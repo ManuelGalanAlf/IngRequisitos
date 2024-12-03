@@ -1,0 +1,152 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F6BF61A0-A7CA-46C3-9F2A-7B829BDDC453}|PIM\\PIM.csproj|c:\\users\\javim\\dropbox\\pc\\desktop\\implementacion10\\pim\\pim\\modificarcategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6BF61A0-A7CA-46C3-9F2A-7B829BDDC453}|PIM\\PIM.csproj|solutionrelative:pim\\modificarcategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6BF61A0-A7CA-46C3-9F2A-7B829BDDC453}|PIM\\PIM.csproj|C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\pim\\modificarcategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F6BF61A0-A7CA-46C3-9F2A-7B829BDDC453}|PIM\\PIM.csproj|solutionrelative:pim\\modificarcategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6BF61A0-A7CA-46C3-9F2A-7B829BDDC453}|PIM\\PIM.csproj|c:\\users\\javim\\dropbox\\pc\\desktop\\implementacion10\\pim\\pim\\modificaratributo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6BF61A0-A7CA-46C3-9F2A-7B829BDDC453}|PIM\\PIM.csproj|solutionrelative:pim\\modificaratributo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6BF61A0-A7CA-46C3-9F2A-7B829BDDC453}|PIM\\PIM.csproj|c:\\users\\javim\\dropbox\\pc\\desktop\\implementacion10\\pim\\pim\\listarcategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6BF61A0-A7CA-46C3-9F2A-7B829BDDC453}|PIM\\PIM.csproj|solutionrelative:pim\\listarcategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6BF61A0-A7CA-46C3-9F2A-7B829BDDC453}|PIM\\PIM.csproj|c:\\users\\javim\\dropbox\\pc\\desktop\\implementacion10\\pim\\pim\\modificaratributo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F6BF61A0-A7CA-46C3-9F2A-7B829BDDC453}|PIM\\PIM.csproj|solutionrelative:pim\\modificaratributo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6BF61A0-A7CA-46C3-9F2A-7B829BDDC453}|PIM\\PIM.csproj|c:\\users\\javim\\dropbox\\pc\\desktop\\implementacion10\\pim\\pim\\listaratributo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6BF61A0-A7CA-46C3-9F2A-7B829BDDC453}|PIM\\PIM.csproj|solutionrelative:pim\\listaratributo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6BF61A0-A7CA-46C3-9F2A-7B829BDDC453}|PIM\\PIM.csproj|c:\\users\\javim\\dropbox\\pc\\desktop\\implementacion10\\pim\\pim\\listaratributo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F6BF61A0-A7CA-46C3-9F2A-7B829BDDC453}|PIM\\PIM.csproj|solutionrelative:pim\\listaratributo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6BF61A0-A7CA-46C3-9F2A-7B829BDDC453}|PIM\\PIM.csproj|c:\\users\\javim\\dropbox\\pc\\desktop\\implementacion10\\pim\\pim\\listarcategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F6BF61A0-A7CA-46C3-9F2A-7B829BDDC453}|PIM\\PIM.csproj|solutionrelative:pim\\listarcategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ModificarAtributo.cs",
+              "DocumentMoniker": "C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\PIM\\ModificarAtributo.cs",
+              "RelativeDocumentMoniker": "PIM\\ModificarAtributo.cs",
+              "ToolTip": "C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\PIM\\ModificarAtributo.cs",
+              "RelativeToolTip": "PIM\\ModificarAtributo.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T11:09:11.197Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ModificarAtributo.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\PIM\\ModificarAtributo.cs",
+              "RelativeDocumentMoniker": "PIM\\ModificarAtributo.cs",
+              "ToolTip": "C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\PIM\\ModificarAtributo.cs [Dise\u00F1o]",
+              "RelativeToolTip": "PIM\\ModificarAtributo.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T11:09:09.317Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ListarAtributo.cs",
+              "DocumentMoniker": "C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\PIM\\ListarAtributo.cs",
+              "RelativeDocumentMoniker": "PIM\\ListarAtributo.cs",
+              "ToolTip": "C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\PIM\\ListarAtributo.cs",
+              "RelativeToolTip": "PIM\\ListarAtributo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHkAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T11:08:45.367Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ListarCategoria.cs",
+              "DocumentMoniker": "C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\PIM\\ListarCategoria.cs",
+              "RelativeDocumentMoniker": "PIM\\ListarCategoria.cs",
+              "ToolTip": "C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\PIM\\ListarCategoria.cs",
+              "RelativeToolTip": "PIM\\ListarCategoria.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFEAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T10:17:59.056Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ModificarCategoria.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\PIM\\ModificarCategoria.cs",
+              "RelativeDocumentMoniker": "PIM\\ModificarCategoria.cs",
+              "ToolTip": "C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\PIM\\ModificarCategoria.cs [Dise\u00F1o]",
+              "RelativeToolTip": "PIM\\ModificarCategoria.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T08:51:18.587Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ModificarCategoria.cs",
+              "DocumentMoniker": "C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\PIM\\ModificarCategoria.cs",
+              "RelativeDocumentMoniker": "PIM\\ModificarCategoria.cs",
+              "ToolTip": "C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\PIM\\ModificarCategoria.cs",
+              "RelativeToolTip": "PIM\\ModificarCategoria.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAmwDQAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T10:13:12.639Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ListarAtributo.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\PIM\\ListarAtributo.cs",
+              "RelativeDocumentMoniker": "PIM\\ListarAtributo.cs",
+              "ToolTip": "C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\PIM\\ListarAtributo.cs [Dise\u00F1o]",
+              "RelativeToolTip": "PIM\\ListarAtributo.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T11:08:40.061Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ListarCategoria.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\PIM\\ListarCategoria.cs",
+              "RelativeDocumentMoniker": "PIM\\ListarCategoria.cs",
+              "ToolTip": "C:\\Users\\javim\\Dropbox\\PC\\Desktop\\Implementacion10\\PIM\\PIM\\ListarCategoria.cs [Dise\u00F1o]",
+              "RelativeToolTip": "PIM\\ListarCategoria.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T10:16:45.794Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

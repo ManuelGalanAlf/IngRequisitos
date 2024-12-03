@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PIM
 {
-    public partial class Form1 : Form
+    public partial class ModificarCategoria : Form
     {
-        public Form1()
+        public ModificarCategoria()
         {
             InitializeComponent();
         }

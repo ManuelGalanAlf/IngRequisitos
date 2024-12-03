@@ -94,4 +94,8 @@ INSERT INTO ProductoCategoria (producto_sku, producto_gtin, categoria_nombre) VA
 ('004', '004', 'Categoria1'),
 ('005', '005', 'Categoria1'),
 ('001', '001', 'Categoria3'),
+<<<<<<< HEAD
 ('004', '004', 'Categoria3');
+=======
+('004', '004', 'Categoria3');
+>>>>>>> caf663606dc9dce569a1d42f3afdeb7eb147bd79

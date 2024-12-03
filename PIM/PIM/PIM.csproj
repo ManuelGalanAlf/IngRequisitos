@@ -74,11 +74,65 @@
     <Compile Include="Categoria.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="CrearAtributo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CrearAtributo.Designer.cs">
+      <DependentUpon>CrearAtributo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrearCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CrearCategoria.Designer.cs">
+      <DependentUpon>CrearCategoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="CrearProducto.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CrearProducto.Designer.cs">
       <DependentUpon>CrearProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListarAtributo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListarAtributo.Designer.cs">
+      <DependentUpon>ListarAtributo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListarCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListarCategoria.Designer.cs">
+      <DependentUpon>ListarCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListarProducto.Designer.cs">
+      <DependentUpon>ListarProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarAtributo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModificarAtributo.Designer.cs">
+      <DependentUpon>ModificarAtributo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModificarCategoria.Designer.cs">
+      <DependentUpon>ModificarCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModificarProducto.Designer.cs">
+      <DependentUpon>ModificarProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MostrarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MostrarProducto.Designer.cs">
+      <DependentUpon>MostrarProducto.cs</DependentUpon>
     </Compile>
     <Compile Include="PantallaPrincipal.cs">
       <SubType>Form</SubType>
@@ -94,8 +148,35 @@
     <Compile Include="ValorAtributo.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CrearAtributo.resx">
+      <DependentUpon>CrearAtributo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrearCategoria.resx">
+      <DependentUpon>CrearCategoria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrearProducto.resx">
       <DependentUpon>CrearProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListarAtributo.resx">
+      <DependentUpon>ListarAtributo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListarCategoria.resx">
+      <DependentUpon>ListarCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListarProducto.resx">
+      <DependentUpon>ListarProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModificarAtributo.resx">
+      <DependentUpon>ModificarAtributo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModificarCategoria.resx">
+      <DependentUpon>ModificarCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModificarProducto.resx">
+      <DependentUpon>ModificarProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MostrarProducto.resx">
+      <DependentUpon>MostrarProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PantallaPrincipal.resx">
       <DependentUpon>PantallaPrincipal.cs</DependentUpon>

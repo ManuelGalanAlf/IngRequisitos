@@ -37,7 +37,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lbCategorias = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,9 +45,9 @@
             this.bAtributos = new System.Windows.Forms.Button();
             this.bCategorias = new System.Windows.Forms.Button();
             this.bDashboard = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbThumbnail = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbThumbnail)).BeginInit();
             this.SuspendLayout();
             // 
             // bModificar
@@ -142,14 +142,14 @@
             this.label4.TabIndex = 51;
             this.label4.Text = "GTIN";
             // 
-            // listBox1
+            // lbCategorias
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(321, 325);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(294, 69);
-            this.listBox1.TabIndex = 50;
+            this.lbCategorias.FormattingEnabled = true;
+            this.lbCategorias.Location = new System.Drawing.Point(321, 325);
+            this.lbCategorias.Margin = new System.Windows.Forms.Padding(2);
+            this.lbCategorias.Name = "lbCategorias";
+            this.lbCategorias.Size = new System.Drawing.Size(294, 69);
+            this.lbCategorias.TabIndex = 50;
             // 
             // label3
             // 
@@ -221,14 +221,14 @@
             this.bDashboard.Text = "Dashboard";
             this.bDashboard.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // pbThumbnail
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(42, 171);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(37, 46);
-            this.pictureBox1.TabIndex = 42;
-            this.pictureBox1.TabStop = false;
+            this.pbThumbnail.Location = new System.Drawing.Point(42, 171);
+            this.pbThumbnail.Margin = new System.Windows.Forms.Padding(2);
+            this.pbThumbnail.Name = "pbThumbnail";
+            this.pbThumbnail.Size = new System.Drawing.Size(37, 46);
+            this.pbThumbnail.TabIndex = 42;
+            this.pbThumbnail.TabStop = false;
             // 
             // MostrarProducto
             // 
@@ -244,7 +244,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lbCategorias);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -252,11 +252,11 @@
             this.Controls.Add(this.bAtributos);
             this.Controls.Add(this.bCategorias);
             this.Controls.Add(this.bDashboard);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pbThumbnail);
             this.Name = "MostrarProducto";
             this.Text = "MostrarProducto";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbThumbnail)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,7 +273,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lbCategorias;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -281,6 +281,6 @@
         private System.Windows.Forms.Button bAtributos;
         private System.Windows.Forms.Button bCategorias;
         private System.Windows.Forms.Button bDashboard;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbThumbnail;
     }
 }

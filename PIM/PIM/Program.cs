@@ -17,6 +17,8 @@ namespace PIM
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new PantallaPrincipal());
+
+ 
         }
     }
 }

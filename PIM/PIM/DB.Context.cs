@@ -13,10 +13,10 @@ namespace PIM
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class grupo17_DBEntities : DbContext
+    public partial class grupo17_DB : DbContext
     {
-        public grupo17_DBEntities()
-            : base("name=grupo17_DBEntities")
+        public grupo17_DB()
+            : base("name=grupo17_DB")
         {
         }
     

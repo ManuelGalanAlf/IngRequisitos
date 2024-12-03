@@ -24,9 +24,19 @@
             <PropertyRef Name="SKU" />
             <PropertyRef Name="GTIN" />
           </Key>
-          <Property Name="SKU" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="GTIN" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SKU" Type="char" MaxLength="14" Nullable="false" />
+          <Property Name="GTIN" Type="char" MaxLength="14" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="categoria_nombre" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductoCategoria">
+          <Key>
+            <PropertyRef Name="producto_sku" />
+            <PropertyRef Name="producto_gtin" />
+            <PropertyRef Name="categoria_nombre" />
+          </Key>
+          <Property Name="producto_sku" Type="char" MaxLength="14" Nullable="false" />
+          <Property Name="producto_gtin" Type="char" MaxLength="14" Nullable="false" />
           <Property Name="categoria_nombre" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="ValorAtributo">
@@ -35,8 +45,8 @@
             <PropertyRef Name="producto_gtin" />
             <PropertyRef Name="atributo_nombre" />
           </Key>
-          <Property Name="producto_sku" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="producto_gtin" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="producto_sku" Type="char" MaxLength="14" Nullable="false" />
+          <Property Name="producto_gtin" Type="char" MaxLength="14" Nullable="false" />
           <Property Name="atributo_nombre" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="valor" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
@@ -51,6 +61,34 @@
             </Principal>
             <Dependent Role="Producto">
               <PropertyRef Name="categoria_nombre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductoC__categ__276EDEB3">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="ProductoCategoria" Type="Self.ProductoCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="nombre" />
+            </Principal>
+            <Dependent Role="ProductoCategoria">
+              <PropertyRef Name="categoria_nombre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductoCategori__267ABA7A">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductoCategoria" Type="Self.ProductoCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="SKU" />
+              <PropertyRef Name="GTIN" />
+            </Principal>
+            <Dependent Role="ProductoCategoria">
+              <PropertyRef Name="producto_sku" />
+              <PropertyRef Name="producto_gtin" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -88,10 +126,19 @@
           <EntitySet Name="Atributo" EntityType="Self.Atributo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductoCategoria" EntityType="Self.ProductoCategoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ValorAtributo" EntityType="Self.ValorAtributo" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Producto__catego__15502E78" Association="Self.FK__Producto__catego__15502E78">
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductoC__categ__276EDEB3" Association="Self.FK__ProductoC__categ__276EDEB3">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="ProductoCategoria" EntitySet="ProductoCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductoCategori__267ABA7A" Association="Self.FK__ProductoCategori__267ABA7A">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="ProductoCategoria" EntitySet="ProductoCategoria" />
           </AssociationSet>
           <AssociationSet Name="FK__ValorAtri__atrib__1920BF5C" Association="Self.FK__ValorAtri__atrib__1920BF5C">
             <End Role="Atributo" EntitySet="Atributo" />
@@ -122,18 +169,20 @@
           <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="numero_de_productos" Type="Int32" />
           <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__catego__15502E78" FromRole="Categoria" ToRole="Producto" />
+          <NavigationProperty Name="Producto1" Relationship="Self.ProductoCategoria" FromRole="Categoria" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
             <PropertyRef Name="SKU" />
             <PropertyRef Name="GTIN" />
           </Key>
-          <Property Name="SKU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="GTIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SKU" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="GTIN" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="categoria_nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Categoria" Relationship="Self.FK__Producto__catego__15502E78" FromRole="Producto" ToRole="Categoria" />
           <NavigationProperty Name="ValorAtributo" Relationship="Self.FK__ValorAtributo__182C9B23" FromRole="Producto" ToRole="ValorAtributo" />
+          <NavigationProperty Name="Categoria1" Relationship="Self.ProductoCategoria" FromRole="Producto" ToRole="Categoria" />
         </EntityType>
         <EntityType Name="ValorAtributo">
           <Key>
@@ -141,8 +190,8 @@
             <PropertyRef Name="producto_gtin" />
             <PropertyRef Name="atributo_nombre" />
           </Key>
-          <Property Name="producto_sku" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="producto_gtin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="producto_sku" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="producto_gtin" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="atributo_nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="valor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Atributo" Relationship="Self.FK__ValorAtri__atrib__1920BF5C" FromRole="ValorAtributo" ToRole="Atributo" />
@@ -192,7 +241,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="grupo17_DBEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="ProductoCategoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="*" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="grupo17_DB" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Atributo" EntityType="Self.Atributo" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" />
           <EntitySet Name="Producto" EntityType="Self.Producto" />
@@ -209,13 +262,17 @@
             <End Role="Producto" EntitySet="Producto" />
             <End Role="ValorAtributo" EntitySet="ValorAtributo" />
           </AssociationSet>
+          <AssociationSet Name="ProductoCategoria" Association="Self.ProductoCategoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="grupo17_DBModelStoreContainer" CdmEntityContainer="grupo17_DBEntities">
+        <EntityContainerMapping StorageEntityContainer="grupo17_DBModelStoreContainer" CdmEntityContainer="grupo17_DB">
           <EntitySetMapping Name="Atributo">
             <EntityTypeMapping TypeName="grupo17_DBModel.Atributo">
               <MappingFragment StoreEntitySet="Atributo">
@@ -252,6 +309,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="ProductoCategoria" TypeName="grupo17_DBModel.ProductoCategoria" StoreEntitySet="ProductoCategoria">
+            <EndProperty Name="Categoria">
+              <ScalarProperty Name="nombre" ColumnName="categoria_nombre" />
+            </EndProperty>
+            <EndProperty Name="Producto">
+              <ScalarProperty Name="SKU" ColumnName="producto_sku" />
+              <ScalarProperty Name="GTIN" ColumnName="producto_gtin" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

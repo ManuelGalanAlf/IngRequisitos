@@ -17,11 +17,13 @@ namespace PIM
         public Categoria()
         {
             this.Producto = new HashSet<Producto>();
+            this.Producto1 = new HashSet<Producto>();
         }
     
         public string nombre { get; set; }
         public Nullable<int> numero_de_productos { get; set; }
     
         public virtual ICollection<Producto> Producto { get; set; }
+        public virtual ICollection<Producto> Producto1 { get; set; }
     }
 }

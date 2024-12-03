@@ -17,6 +17,7 @@ namespace PIM
         public Producto()
         {
             this.ValorAtributo = new HashSet<ValorAtributo>();
+            this.Categoria1 = new HashSet<Categoria>();
         }
     
         public string SKU { get; set; }
@@ -26,5 +27,6 @@ namespace PIM
     
         public virtual Categoria Categoria { get; set; }
         public virtual ICollection<ValorAtributo> ValorAtributo { get; set; }
+        public virtual ICollection<Categoria> Categoria1 { get; set; }
     }
 }

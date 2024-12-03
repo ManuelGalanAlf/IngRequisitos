@@ -26,14 +26,14 @@ CREATE TABLE Atributo (
   tipo VARCHAR(10) NOT NULL
 );
 
--- Validación manual para "tipo" en SQL Server
+-- ValidaciÃ³n manual para "tipo" en SQL Server
 -- Insertar datos en Atributo
 INSERT INTO Atributo (nombre, tipo)
 VALUES 
   ('Coste', 'Cadena'),
   ('Detalle', 'Cadena'),
   ('Precio', 'Real'),
-  ('Tamaño', 'Real');
+  ('TamaÃ±o', 'Real');
 
 -- Tabla Producto
 IF OBJECT_ID('Producto', 'U') IS NOT NULL
@@ -74,4 +74,26 @@ VALUES
   ('001', '001', 'Detalle', '45'),
   ('003', '003', 'Detalle', '30'),
   ('003', '003', 'Precio', '15'),
-  ('003', '003', 'Tamaño', '10');
+  ('003', '003', 'TamaÃ±o', '10');
+
+
+
+USE
+grupo17_DB;
+GO
+-- Crear la tabla productoCategoria
+CREATE TABLE productoCategoria (
+    producto_sku VARCHAR(10),
+    producto_gtin VARCHAR(10),
+    categoria_nombre VARCHAR(50),
+    PRIMARY KEY (producto_sku, producto_gtin, categoria_nombre)
+);
+
+-- Insertar datos en la tabla
+INSERT INTO productoCategoria (producto_sku, producto_gtin, categoria_nombre) VALUES
+('001', '001', 'Categoria1'),
+('004', '004', 'Categoria1'),
+('005', '005', 'Categoria1'),
+('001', '001', 'Categoria3'),
+('004', '004', 'Categoria3');
+

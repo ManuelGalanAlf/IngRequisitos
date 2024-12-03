@@ -12,9 +12,11 @@ namespace PIM
 {
     public partial class ModificarAtributo : Form
     {
-        public ModificarAtributo()
+        private Atributo atributo;
+        public ModificarAtributo(Atributo atributo)
         {
             InitializeComponent();
+            this.atributo = atributo;
         }
     }
 }

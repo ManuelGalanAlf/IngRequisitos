@@ -56,6 +56,7 @@
             this.bAtributos.TabIndex = 26;
             this.bAtributos.Text = "Atributos";
             this.bAtributos.UseVisualStyleBackColor = true;
+            this.bAtributos.Click += new System.EventHandler(this.bAtributos_Click);
             // 
             // bCategorias
             // 
@@ -66,6 +67,7 @@
             this.bCategorias.TabIndex = 25;
             this.bCategorias.Text = "Categorias";
             this.bCategorias.UseVisualStyleBackColor = true;
+            this.bCategorias.Click += new System.EventHandler(this.bCategorias_Click);
             // 
             // bProductos
             // 
@@ -76,6 +78,7 @@
             this.bProductos.TabIndex = 24;
             this.bProductos.Text = "Productos";
             this.bProductos.UseVisualStyleBackColor = true;
+            this.bProductos.Click += new System.EventHandler(this.bProductos_Click);
             // 
             // bDashboard
             // 
@@ -86,6 +89,7 @@
             this.bDashboard.TabIndex = 23;
             this.bDashboard.Text = "Dashboard";
             this.bDashboard.UseVisualStyleBackColor = true;
+            this.bDashboard.Click += new System.EventHandler(this.bDashboard_Click);
             // 
             // PantallaPrincipal
             // 

@@ -18,7 +18,7 @@ namespace PIM
         {
             this.ValorAtributo = new HashSet<ValorAtributo>();
         }
-    
+   
         public string nombre { get; set; }
         public string tipo { get; set; }
     

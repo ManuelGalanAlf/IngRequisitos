@@ -56,6 +56,7 @@
             this.bCrearAtributo.TabIndex = 34;
             this.bCrearAtributo.Text = "Crear Atributo";
             this.bCrearAtributo.UseVisualStyleBackColor = true;
+            this.bCrearAtributo.Click += new System.EventHandler(this.bCrearAtributo_Click);
             // 
             // bAtributos
             // 
@@ -89,27 +90,27 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(140, 187);
+            this.dataGridView1.Location = new System.Drawing.Point(140, 183);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(499, 150);
-            this.dataGridView1.TabIndex = 30;
+            this.dataGridView1.Size = new System.Drawing.Size(502, 151);
+            this.dataGridView1.TabIndex = 36;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // ListarAtributo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1044, 514);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.bProductos);
             this.Controls.Add(this.bCrearAtributo);
             this.Controls.Add(this.bAtributos);
             this.Controls.Add(this.bCategorias);
             this.Controls.Add(this.bDashboard);
-            this.Controls.Add(this.dataGridView1);
             this.Name = "ListarAtributo";
             this.Text = "ListarAtributo";
+            this.Load += new System.EventHandler(this.ListarAtributo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

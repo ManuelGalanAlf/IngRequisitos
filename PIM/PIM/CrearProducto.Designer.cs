@@ -28,11 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.bAgregar = new System.Windows.Forms.Button();
             this.bThumbnail = new System.Windows.Forms.Button();
             this.pbThumbnail = new System.Windows.Forms.PictureBox();
-            this.lbAtributo = new System.Windows.Forms.Label();
-            this.tbAtributo = new System.Windows.Forms.TextBox();
             this.bAtributos = new System.Windows.Forms.Button();
             this.bCategorias = new System.Windows.Forms.Button();
             this.bProductos = new System.Windows.Forms.Button();
@@ -55,17 +52,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // bAgregar
-            // 
-            this.bAgregar.Font = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bAgregar.Location = new System.Drawing.Point(517, 387);
-            this.bAgregar.Margin = new System.Windows.Forms.Padding(2);
-            this.bAgregar.Name = "bAgregar";
-            this.bAgregar.Size = new System.Drawing.Size(56, 19);
-            this.bAgregar.TabIndex = 48;
-            this.bAgregar.Text = "Agregar";
-            this.bAgregar.UseVisualStyleBackColor = true;
-            // 
             // bThumbnail
             // 
             this.bThumbnail.Location = new System.Drawing.Point(180, 407);
@@ -84,25 +70,6 @@
             this.pbThumbnail.Size = new System.Drawing.Size(100, 85);
             this.pbThumbnail.TabIndex = 46;
             this.pbThumbnail.TabStop = false;
-            // 
-            // lbAtributo
-            // 
-            this.lbAtributo.AutoSize = true;
-            this.lbAtributo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAtributo.Location = new System.Drawing.Point(399, 357);
-            this.lbAtributo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbAtributo.Name = "lbAtributo";
-            this.lbAtributo.Size = new System.Drawing.Size(198, 19);
-            this.lbAtributo.TabIndex = 45;
-            this.lbAtributo.Text = "Inserte atributo seleccionado";
-            // 
-            // tbAtributo
-            // 
-            this.tbAtributo.Location = new System.Drawing.Point(402, 387);
-            this.tbAtributo.Margin = new System.Windows.Forms.Padding(2);
-            this.tbAtributo.Name = "tbAtributo";
-            this.tbAtributo.Size = new System.Drawing.Size(77, 20);
-            this.tbAtributo.TabIndex = 44;
             // 
             // bAtributos
             // 
@@ -155,6 +122,7 @@
             this.bCancelar.TabIndex = 39;
             this.bCancelar.Text = "Cancelar";
             this.bCancelar.UseVisualStyleBackColor = false;
+            this.bCancelar.Click += new System.EventHandler(this.bCancelar_Click);
             // 
             // bConfirmar
             // 
@@ -167,9 +135,12 @@
             this.bConfirmar.TabIndex = 38;
             this.bConfirmar.Text = "Confirmar";
             this.bConfirmar.UseVisualStyleBackColor = false;
+            this.bConfirmar.Click += new System.EventHandler(this.bConfirmar_Click);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(377, 130);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
@@ -286,12 +257,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1044, 514);
-            this.Controls.Add(this.bAgregar);
+            this.ClientSize = new System.Drawing.Size(1012, 514);
             this.Controls.Add(this.bThumbnail);
             this.Controls.Add(this.pbThumbnail);
-            this.Controls.Add(this.lbAtributo);
-            this.Controls.Add(this.tbAtributo);
             this.Controls.Add(this.bAtributos);
             this.Controls.Add(this.bCategorias);
             this.Controls.Add(this.bProductos);
@@ -311,6 +279,7 @@
             this.Controls.Add(this.lSku);
             this.Name = "CrearProducto";
             this.Text = "CrearProducto";
+            this.Load += new System.EventHandler(this.CrearProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbThumbnail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -320,11 +289,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button bAgregar;
         private System.Windows.Forms.Button bThumbnail;
         private System.Windows.Forms.PictureBox pbThumbnail;
-        private System.Windows.Forms.Label lbAtributo;
-        private System.Windows.Forms.TextBox tbAtributo;
         private System.Windows.Forms.Button bAtributos;
         private System.Windows.Forms.Button bCategorias;
         private System.Windows.Forms.Button bProductos;

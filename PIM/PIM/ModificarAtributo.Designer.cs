@@ -44,7 +44,7 @@
             // 
             this.bCancelar.BackColor = System.Drawing.Color.Red;
             this.bCancelar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bCancelar.Location = new System.Drawing.Point(868, 438);
+            this.bCancelar.Location = new System.Drawing.Point(884, 436);
             this.bCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.bCancelar.Name = "bCancelar";
             this.bCancelar.Size = new System.Drawing.Size(113, 48);
@@ -57,7 +57,7 @@
             // 
             this.bConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.bConfirmar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bConfirmar.Location = new System.Drawing.Point(742, 438);
+            this.bConfirmar.Location = new System.Drawing.Point(758, 436);
             this.bConfirmar.Margin = new System.Windows.Forms.Padding(2);
             this.bConfirmar.Name = "bConfirmar";
             this.bConfirmar.Size = new System.Drawing.Size(113, 48);
@@ -70,7 +70,7 @@
             // 
             this.cbTipoAtributo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoAtributo.FormattingEnabled = true;
-            this.cbTipoAtributo.Location = new System.Drawing.Point(582, 168);
+            this.cbTipoAtributo.Location = new System.Drawing.Point(468, 160);
             this.cbTipoAtributo.Margin = new System.Windows.Forms.Padding(2);
             this.cbTipoAtributo.Name = "cbTipoAtributo";
             this.cbTipoAtributo.Size = new System.Drawing.Size(164, 21);
@@ -78,7 +78,7 @@
             // 
             // bAtributos
             // 
-            this.bAtributos.Location = new System.Drawing.Point(547, 38);
+            this.bAtributos.Location = new System.Drawing.Point(433, 30);
             this.bAtributos.Margin = new System.Windows.Forms.Padding(2);
             this.bAtributos.Name = "bAtributos";
             this.bAtributos.Size = new System.Drawing.Size(112, 47);
@@ -89,7 +89,7 @@
             // 
             // bCategorias
             // 
-            this.bCategorias.Location = new System.Drawing.Point(418, 38);
+            this.bCategorias.Location = new System.Drawing.Point(304, 30);
             this.bCategorias.Margin = new System.Windows.Forms.Padding(2);
             this.bCategorias.Name = "bCategorias";
             this.bCategorias.Size = new System.Drawing.Size(112, 47);
@@ -100,7 +100,7 @@
             // 
             // bProductos
             // 
-            this.bProductos.Location = new System.Drawing.Point(288, 38);
+            this.bProductos.Location = new System.Drawing.Point(174, 30);
             this.bProductos.Margin = new System.Windows.Forms.Padding(2);
             this.bProductos.Name = "bProductos";
             this.bProductos.Size = new System.Drawing.Size(112, 47);
@@ -111,7 +111,7 @@
             // 
             // bDashboard
             // 
-            this.bDashboard.Location = new System.Drawing.Point(165, 38);
+            this.bDashboard.Location = new System.Drawing.Point(51, 30);
             this.bDashboard.Margin = new System.Windows.Forms.Padding(2);
             this.bDashboard.Name = "bDashboard";
             this.bDashboard.Size = new System.Drawing.Size(112, 47);
@@ -124,7 +124,7 @@
             // 
             this.Tipo.AutoSize = true;
             this.Tipo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tipo.Location = new System.Drawing.Point(579, 133);
+            this.Tipo.Location = new System.Drawing.Point(465, 125);
             this.Tipo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Tipo.Name = "Tipo";
             this.Tipo.Size = new System.Drawing.Size(37, 19);
@@ -133,7 +133,7 @@
             // 
             // tbNombre
             // 
-            this.tbNombre.Location = new System.Drawing.Point(165, 170);
+            this.tbNombre.Location = new System.Drawing.Point(51, 162);
             this.tbNombre.Margin = new System.Windows.Forms.Padding(2);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(299, 20);
@@ -143,7 +143,7 @@
             // 
             this.lSku.AutoSize = true;
             this.lSku.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lSku.Location = new System.Drawing.Point(162, 133);
+            this.lSku.Location = new System.Drawing.Point(48, 125);
             this.lSku.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lSku.Name = "lSku";
             this.lSku.Size = new System.Drawing.Size(60, 19);

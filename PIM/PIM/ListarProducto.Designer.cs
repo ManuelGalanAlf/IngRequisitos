@@ -108,12 +108,13 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(499, 150);
             this.dataGridView1.TabIndex = 25;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
             // 
             // ListarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1044, 514);
+            this.ClientSize = new System.Drawing.Size(1012, 514);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.bProductos);
             this.Controls.Add(this.bCrearProducto);
@@ -123,6 +124,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "ListarProducto";
             this.Text = "ListarProducto";
+            this.Load += new System.EventHandler(this.ListarProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

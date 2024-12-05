@@ -134,6 +134,7 @@
             this.bConfirmar.TabIndex = 59;
             this.bConfirmar.Text = "Confirmar";
             this.bConfirmar.UseVisualStyleBackColor = false;
+            this.bConfirmar.Click += new System.EventHandler(this.bConfirmar_Click);
             // 
             // dataGridView1
             // 
@@ -254,7 +255,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1044, 514);
+            this.ClientSize = new System.Drawing.Size(1012, 514);
             this.Controls.Add(this.bThumbnail);
             this.Controls.Add(this.pbThumbnail);
             this.Controls.Add(this.bAtributos);
@@ -276,6 +277,7 @@
             this.Controls.Add(this.lSku);
             this.Name = "ModificarProducto";
             this.Text = "ModificarProducto";
+            this.Load += new System.EventHandler(this.ModificarProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbThumbnail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

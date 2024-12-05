@@ -17,16 +17,17 @@ namespace PIM
         public Producto()
         {
             this.ValorAtributo = new HashSet<ValorAtributo>();
-            this.Categoria1 = new HashSet<Categoria>();
+            this.Categoria = new HashSet<Categoria>();
         }
     
-        public string SKU { get; set; }
-        public string GTIN { get; set; }
-        public string nombre { get; set; }
-        public string categoria_nombre { get; set; }
+        public int Id { get; set; }
+        public int Sku { get; set; }
+        public Nullable<long> Gtin { get; set; }
+        public string Nombre { get; set; }
+        public System.DateTime FechaCreacion { get; set; }
+        public Nullable<System.DateTime> FechaModificacion { get; set; }
     
-        public virtual Categoria Categoria { get; set; }
         public virtual ICollection<ValorAtributo> ValorAtributo { get; set; }
-        public virtual ICollection<Categoria> Categoria1 { get; set; }
+        public virtual ICollection<Categoria> Categoria { get; set; }
     }
 }

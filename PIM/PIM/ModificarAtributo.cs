@@ -1,14 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.Entity;
 
 namespace PIM
 {
     public partial class ModificarAtributo : Form
     {
+        TiendaEntities1 bd = new TiendaEntities1();
 
-
-        private Atributo atributo;
+        Atributo atributo;
         public ModificarAtributo(Atributo atributo)
         {
             InitializeComponent();
@@ -18,14 +25,14 @@ namespace PIM
         private void ModificarAtributo_Load(object sender, EventArgs e)
         {
             // Configurar el campo de texto para el nombre
-            tbNombre.Text = atributo.nombre;
+            tbNombre.Text = atributo.Nombre;
 
             // Poblar el ComboBox con los tipos válidos (solo lectura)
             cbTipoAtributo.DataSource = Enum.GetValues(typeof(CrearAtributo.TipoAtributo));
 
             // Seleccionar el tipo actual del atributo
             CrearAtributo.TipoAtributo tipoSeleccionado;
-            if (Enum.TryParse(atributo.tipo, out tipoSeleccionado))
+            if (Enum.TryParse(atributo.Tipo, out tipoSeleccionado))
             {
                 cbTipoAtributo.SelectedItem = tipoSeleccionado;
             }
@@ -78,26 +85,23 @@ namespace PIM
         {
             try
             {
+                bd.Entry(atributo).State = EntityState.Detached;
+                var atributoSeleccionado = bd.Atributo.FirstOrDefault(a => a.Nombre == atributo.Nombre);
+
+                string nuevoNombre = tbNombre.Text;
+                Console.WriteLine("Nuevo nombre: " + nuevoNombre);
+                // Verificar si el nombre no está vacío
+                if (string.IsNullOrEmpty(nuevoNombre))
+                {
+                    MessageBox.Show("Por favor ingrese un nombre para el atributo.");
+                    return;
+                }
+
+                // Actualizar el nombre del atributo
+                atributoSeleccionado.Nombre = nuevoNombre;
 
 
-            grupo17_DB DB = new grupo17_DB();
-
-            var atributoSeleccionado = DB.Atributo.FirstOrDefault(a => a.nombre == atributo.nombre);
-
-            string nuevoNombre = tbNombre.Text;
-            Console.WriteLine("Nuevo nombre: " + nuevoNombre);
-            // Verificar si el nombre no está vacío
-            if (string.IsNullOrEmpty(nuevoNombre))
-            {
-                MessageBox.Show("Por favor ingrese un nombre para el atributo.");
-                return;
-            }
-
-            // Actualizar el nombre del atributo
-            atributoSeleccionado.nombre = nuevoNombre;
-
-          
-                DB.SaveChanges();
+                bd.SaveChanges();
 
                 MessageBox.Show("Atributo actualizado exitosamente.");
 
@@ -109,8 +113,6 @@ namespace PIM
             {
                 MessageBox.Show("Ocurrió un error al actualizar el atributo: " + ex.Message);
             }
-
-
         }
     }
 }

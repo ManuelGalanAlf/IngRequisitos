@@ -1,12 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PIM
 {
     public partial class ListarAtributo : Form
     {
-        grupo17_DB DB = new grupo17_DB(); // Contexto de la base de datos
+        TiendaEntities1 bd = new TiendaEntities1();
 
         public ListarAtributo()
         {
@@ -15,22 +21,22 @@ namespace PIM
 
         private void ListarAtributo_Load(object sender, EventArgs e)
         {
-            // Cargar los datos de la base de datos al DataGridView
+             // Cargar los datos de la base de datos al DataGridView
             CargarDatos();
 
             // Agregar las columnas personalizadas si no existen
             AgregarColumnasPersonalizadas();
 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; 
         }
 
         private void CargarDatos()
         {
             // Obtener los atributos desde la base de datos
-            var atributos = DB.Atributo.Select(a => new
+            var atributos = bd.Atributo.Select(a => new
             {
-                Nombre = a.nombre, // Nombre del atributo
-                Tipo = a.tipo      // Tipo del atributo
+                Nombre = a.Nombre, // Nombre del atributo
+                Tipo = a.Tipo      // Tipo del atributo
             }).ToList();
 
             // Establecer la fuente de datos del DataGridView
@@ -83,8 +89,6 @@ namespace PIM
             AgregarColumnasPersonalizadas();
         }
 
-       
-
         private void bCrearAtributo_Click(object sender, EventArgs e)
         {
             CrearAtributo crearAtributo = new CrearAtributo();
@@ -92,21 +96,22 @@ namespace PIM
             this.Hide();
         }
 
-        private void bDashboard_Click(object sender, EventArgs e)
-        {
+        private void bDashboard_Click(object sender, EventArgs e) {
             PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
             pantallaPrincipal.Show();
             this.Hide();
         }
+        
+
 
         private void bCategorias_Click(object sender, EventArgs e)
         {
             ListarCategoria listarCategoria = new ListarCategoria();
             listarCategoria.Show();
-            this.Hide();
+            this.Hide();              
         }
 
-        private void bProductos_Click(object sender, EventArgs e)
+        private void bAtributos_Click(object sender, EventArgs e)
         {
             ListarProducto listarProducto = new ListarProducto();
             listarProducto.Show();
@@ -125,7 +130,7 @@ namespace PIM
                 if (e.ColumnIndex == dataGridView1.Columns["Editar"].Index)
                 {
                     // Acción para el botón "Editar"
-                    var atributo = DB.Atributo.FirstOrDefault(a => a.nombre == atributoNombre);
+                    var atributo = bd.Atributo.FirstOrDefault(a => a.Nombre == atributoNombre);
                     if (atributo != null)
                     {
                         ModificarAtributo modificarForm = new ModificarAtributo(atributo);
@@ -143,11 +148,11 @@ namespace PIM
 
                     if (result == DialogResult.Yes)
                     {
-                        var atributo = DB.Atributo.FirstOrDefault(a => a.nombre == atributoNombre);
+                        var atributo = bd.Atributo.FirstOrDefault(a => a.Nombre == atributoNombre);
                         if (atributo != null)
                         {
-                            DB.Atributo.Remove(atributo); // Eliminar el atributo de la base de datos
-                            DB.SaveChanges(); // Guardar cambios en la base de datos
+                            bd.Atributo.Remove(atributo); // Eliminar el atributo de la base de datos
+                            bd.SaveChanges(); // Guardar cambios en la base de datos
                             RecargarDatos(); // Recargar los datos después de eliminar
                         }
                     }
@@ -155,6 +160,15 @@ namespace PIM
             }
         }
 
-     
+
+
+
+
+        
+
+
+
+
+
     }
 }

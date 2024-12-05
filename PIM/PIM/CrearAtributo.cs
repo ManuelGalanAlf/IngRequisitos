@@ -19,12 +19,17 @@ namespace PIM
             Cadena
         }
 
-        grupo17_DB DB = new grupo17_DB();
+        TiendaEntities1 bd = new TiendaEntities1();
 
         public CrearAtributo()
         {
             InitializeComponent();
             cbTipoAtributo.DataSource = Enum.GetValues(typeof(TipoAtributo));
+        }
+
+        private void CrearAtributo_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void bDashboard_Click(object sender, EventArgs e)
@@ -75,17 +80,17 @@ namespace PIM
 
             Atributo nuevoAtributo = new Atributo
             {
-                nombre = nombre,
-                tipo = tipoString
+                Nombre = nombre,
+                Tipo = tipoString
             };
 
             try
             {
                 // Añadir el nuevo atributo al contexto de la base de datos
-                DB.Atributo.Add(nuevoAtributo);
+                bd.Atributo.Add(nuevoAtributo);
 
                 // Guardar los cambios en la base de datos
-                DB.SaveChanges();
+                bd.SaveChanges();
 
                 MessageBox.Show("Atributo creado exitosamente.");
 
@@ -100,6 +105,12 @@ namespace PIM
             }
         }
 
-       
+
+
+
+
+
+
+
     }
 }

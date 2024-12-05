@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TiendaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Atributo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Tipo" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="NumeroProductos" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="NumeroProductos" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sku" Type="int" Nullable="false" />
+          <Property Name="Gtin" Type="bigint" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProductoCategoria">
+          <Key>
+            <PropertyRef Name="ProductoId" />
+            <PropertyRef Name="CategoriaId" />
+          </Key>
+          <Property Name="ProductoId" Type="int" Nullable="false" />
+          <Property Name="CategoriaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ValorAtributo">
+          <Key>
+            <PropertyRef Name="ProductoId" />
+            <PropertyRef Name="AtributoId" />
+          </Key>
+          <Property Name="ProductoId" Type="int" Nullable="false" />
+          <Property Name="AtributoId" Type="int" Nullable="false" />
+          <Property Name="Valor" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_ProductoCategoria_Categoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductoCategoria" Type="Self.ProductoCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductoCategoria">
+              <PropertyRef Name="CategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductoCategoria_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductoCategoria" Type="Self.ProductoCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductoCategoria">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValorAtributo_Atributo">
+          <End Role="Atributo" Type="Self.Atributo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ValorAtributo" Type="Self.ValorAtributo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Atributo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ValorAtributo">
+              <PropertyRef Name="AtributoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValorAtributo_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ValorAtributo" Type="Self.ValorAtributo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ValorAtributo">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TiendaModelStoreContainer">
+          <EntitySet Name="Atributo" EntityType="Self.Atributo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductoCategoria" EntityType="Self.ProductoCategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ValorAtributo" EntityType="Self.ValorAtributo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ProductoCategoria_Categoria" Association="Self.FK_ProductoCategoria_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="ProductoCategoria" EntitySet="ProductoCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductoCategoria_Producto" Association="Self.FK_ProductoCategoria_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="ProductoCategoria" EntitySet="ProductoCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValorAtributo_Atributo" Association="Self.FK_ValorAtributo_Atributo">
+            <End Role="Atributo" EntitySet="Atributo" />
+            <End Role="ValorAtributo" EntitySet="ValorAtributo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValorAtributo_Producto" Association="Self.FK_ValorAtributo_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="ValorAtributo" EntitySet="ValorAtributo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TiendaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Atributo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumeroProductos" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ValorAtributo" Relationship="Self.FK_ValorAtributo_Atributo" FromRole="Atributo" ToRole="ValorAtributo" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumeroProductos" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="Self.ProductoCategoria" FromRole="Categoria" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sku" Type="Int32" Nullable="false" />
+          <Property Name="Gtin" Type="Int64" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ValorAtributo" Relationship="Self.FK_ValorAtributo_Producto" FromRole="Producto" ToRole="ValorAtributo" />
+          <NavigationProperty Name="Categoria" Relationship="Self.ProductoCategoria" FromRole="Producto" ToRole="Categoria" />
+        </EntityType>
+        <EntityType Name="ValorAtributo">
+          <Key>
+            <PropertyRef Name="ProductoId" />
+            <PropertyRef Name="AtributoId" />
+          </Key>
+          <Property Name="ProductoId" Type="Int32" Nullable="false" />
+          <Property Name="AtributoId" Type="Int32" Nullable="false" />
+          <Property Name="Valor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Atributo" Relationship="Self.FK_ValorAtributo_Atributo" FromRole="ValorAtributo" ToRole="Atributo" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_ValorAtributo_Producto" FromRole="ValorAtributo" ToRole="Producto" />
+        </EntityType>
+        <Association Name="FK_ValorAtributo_Atributo">
+          <End Role="Atributo" Type="Self.Atributo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ValorAtributo" Type="Self.ValorAtributo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Atributo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ValorAtributo">
+              <PropertyRef Name="AtributoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValorAtributo_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ValorAtributo" Type="Self.ValorAtributo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ValorAtributo">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductoCategoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="*" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="TiendaEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Atributo" EntityType="Self.Atributo" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="ValorAtributo" EntityType="Self.ValorAtributo" />
+          <AssociationSet Name="FK_ValorAtributo_Atributo" Association="Self.FK_ValorAtributo_Atributo">
+            <End Role="Atributo" EntitySet="Atributo" />
+            <End Role="ValorAtributo" EntitySet="ValorAtributo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValorAtributo_Producto" Association="Self.FK_ValorAtributo_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="ValorAtributo" EntitySet="ValorAtributo" />
+          </AssociationSet>
+          <AssociationSet Name="ProductoCategoria" Association="Self.ProductoCategoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TiendaModelStoreContainer" CdmEntityContainer="TiendaEntities1">
+          <EntitySetMapping Name="Atributo">
+            <EntityTypeMapping TypeName="TiendaModel.Atributo">
+              <MappingFragment StoreEntitySet="Atributo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="NumeroProductos" ColumnName="NumeroProductos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="TiendaModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="NumeroProductos" ColumnName="NumeroProductos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="TiendaModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Sku" ColumnName="Sku" />
+                <ScalarProperty Name="Gtin" ColumnName="Gtin" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ValorAtributo">
+            <EntityTypeMapping TypeName="TiendaModel.ValorAtributo">
+              <MappingFragment StoreEntitySet="ValorAtributo">
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="AtributoId" ColumnName="AtributoId" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ProductoCategoria" TypeName="TiendaModel.ProductoCategoria" StoreEntitySet="ProductoCategoria">
+            <EndProperty Name="Categoria">
+              <ScalarProperty Name="Id" ColumnName="CategoriaId" />
+            </EndProperty>
+            <EndProperty Name="Producto">
+              <ScalarProperty Name="Id" ColumnName="ProductoId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

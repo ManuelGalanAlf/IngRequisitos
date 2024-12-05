@@ -14,10 +14,9 @@ namespace PIM
     
     public partial class ValorAtributo
     {
-        public string producto_sku { get; set; }
-        public string producto_gtin { get; set; }
-        public string atributo_nombre { get; set; }
-        public string valor { get; set; }
+        public int ProductoId { get; set; }
+        public int AtributoId { get; set; }
+        public string Valor { get; set; }
     
         public virtual Atributo Atributo { get; set; }
         public virtual Producto Producto { get; set; }

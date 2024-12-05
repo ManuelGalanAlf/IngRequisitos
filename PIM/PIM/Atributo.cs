@@ -18,9 +18,11 @@ namespace PIM
         {
             this.ValorAtributo = new HashSet<ValorAtributo>();
         }
-   
-        public string nombre { get; set; }
-        public string tipo { get; set; }
+    
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Tipo { get; set; }
+        public int NumeroProductos { get; set; }
     
         public virtual ICollection<ValorAtributo> ValorAtributo { get; set; }
     }

@@ -167,6 +167,7 @@
             this.Controls.Add(this.lSku);
             this.Name = "CrearAtributo";
             this.Text = "CrearAtributo";
+            this.Load += new System.EventHandler(this.CrearAtributo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -89,7 +89,6 @@ namespace PIM
                 var atributoSeleccionado = bd.Atributo.FirstOrDefault(a => a.Nombre == atributo.Nombre);
 
                 string nuevoNombre = tbNombre.Text;
-                Console.WriteLine("Nuevo nombre: " + nuevoNombre);
                 // Verificar si el nombre no está vacío
                 if (string.IsNullOrEmpty(nuevoNombre))
                 {

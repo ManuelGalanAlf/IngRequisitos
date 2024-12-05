@@ -47,6 +47,7 @@
             this.bAtributos.TabIndex = 39;
             this.bAtributos.Text = "Atributos";
             this.bAtributos.UseVisualStyleBackColor = true;
+            this.bAtributos.Click += new System.EventHandler(this.bAtributos_Click);
             // 
             // bCategorias
             // 
@@ -57,6 +58,7 @@
             this.bCategorias.TabIndex = 38;
             this.bCategorias.Text = "Categorias";
             this.bCategorias.UseVisualStyleBackColor = true;
+            this.bCategorias.Click += new System.EventHandler(this.bCategorias_Click);
             // 
             // bProductos
             // 
@@ -67,6 +69,7 @@
             this.bProductos.TabIndex = 37;
             this.bProductos.Text = "Productos";
             this.bProductos.UseVisualStyleBackColor = true;
+            this.bProductos.Click += new System.EventHandler(this.bProductos_Click);
             // 
             // bDashboard
             // 
@@ -77,6 +80,7 @@
             this.bDashboard.TabIndex = 36;
             this.bDashboard.Text = "Dashboard";
             this.bDashboard.UseVisualStyleBackColor = true;
+            this.bDashboard.Click += new System.EventHandler(this.bDashboard_Click);
             // 
             // bCancelar
             // 
@@ -89,6 +93,7 @@
             this.bCancelar.TabIndex = 35;
             this.bCancelar.Text = "Cancelar";
             this.bCancelar.UseVisualStyleBackColor = false;
+            this.bCancelar.Click += new System.EventHandler(this.bCancelar_Click);
             // 
             // bConfirmar
             // 
@@ -101,6 +106,7 @@
             this.bConfirmar.TabIndex = 34;
             this.bConfirmar.Text = "Confirmar";
             this.bConfirmar.UseVisualStyleBackColor = false;
+            this.bConfirmar.Click += new System.EventHandler(this.bConfirmar_Click);
             // 
             // tbNombre
             // 
@@ -136,6 +142,7 @@
             this.Controls.Add(this.lSku);
             this.Name = "CrearCategoria";
             this.Text = "CrearCategoria";
+            this.Load += new System.EventHandler(this.CrearCategoria_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

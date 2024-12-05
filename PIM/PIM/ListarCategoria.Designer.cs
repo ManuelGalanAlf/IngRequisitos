@@ -46,6 +46,7 @@
             this.bCrearProducto.TabIndex = 39;
             this.bCrearProducto.Text = "Crear Categoria";
             this.bCrearProducto.UseVisualStyleBackColor = true;
+            this.bCrearProducto.Click += new System.EventHandler(this.bCrearProducto_Click);
             // 
             // dataGridView1
             // 
@@ -56,6 +57,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(480, 180);
             this.dataGridView1.TabIndex = 38;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // bAtributos
             // 
@@ -66,6 +68,7 @@
             this.bAtributos.TabIndex = 37;
             this.bAtributos.Text = "Atributos";
             this.bAtributos.UseVisualStyleBackColor = true;
+            this.bAtributos.Click += new System.EventHandler(this.bAtributos_Click);
             // 
             // bCategorias
             // 
@@ -76,6 +79,7 @@
             this.bCategorias.TabIndex = 36;
             this.bCategorias.Text = "Categorias";
             this.bCategorias.UseVisualStyleBackColor = true;
+            this.bCategorias.Click += new System.EventHandler(this.bCategorias_Click);
             // 
             // bProductos
             // 
@@ -86,6 +90,7 @@
             this.bProductos.TabIndex = 35;
             this.bProductos.Text = "Productos";
             this.bProductos.UseVisualStyleBackColor = true;
+            this.bProductos.Click += new System.EventHandler(this.bProductos_Click);
             // 
             // bDashboard
             // 
@@ -96,6 +101,7 @@
             this.bDashboard.TabIndex = 34;
             this.bDashboard.Text = "Dashboard";
             this.bDashboard.UseVisualStyleBackColor = true;
+            this.bDashboard.Click += new System.EventHandler(this.bDashboard_Click);
             // 
             // ListarCategoria
             // 
@@ -110,6 +116,7 @@
             this.Controls.Add(this.bDashboard);
             this.Name = "ListarCategoria";
             this.Text = "ListarCategoria";
+            this.Load += new System.EventHandler(this.ListarCategoria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

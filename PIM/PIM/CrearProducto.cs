@@ -110,6 +110,7 @@ namespace PIM
                             }
 
                             BD.SaveChanges();
+
                         }
                     }
                 }
@@ -130,6 +131,8 @@ namespace PIM
                 BD.SaveChanges(); // Guardar los cambios en las categorías
                 MessageBox.Show("Producto creado con éxito");
 
+                ListarProducto listarProducto = new ListarProducto();
+                listarProducto.Show();
                 this.Close();
             }
             catch (Exception ex)

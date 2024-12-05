@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.bProductos = new System.Windows.Forms.Button();
             this.bCrearProducto = new System.Windows.Forms.Button();
             this.bAtributos = new System.Windows.Forms.Button();
@@ -37,16 +36,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(271, 362);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(239, 19);
-            this.button1.TabIndex = 31;
-            this.button1.Text = "Ver Producto";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // bProductos
             // 
@@ -57,6 +46,7 @@
             this.bProductos.TabIndex = 30;
             this.bProductos.Text = "Productos";
             this.bProductos.UseVisualStyleBackColor = true;
+            this.bProductos.Click += new System.EventHandler(this.bProductos_Click);
             // 
             // bCrearProducto
             // 
@@ -67,6 +57,7 @@
             this.bCrearProducto.TabIndex = 29;
             this.bCrearProducto.Text = "Crear Producto";
             this.bCrearProducto.UseVisualStyleBackColor = true;
+            this.bCrearProducto.Click += new System.EventHandler(this.bCrearProducto_Click);
             // 
             // bAtributos
             // 
@@ -77,6 +68,7 @@
             this.bAtributos.TabIndex = 28;
             this.bAtributos.Text = "Atributos";
             this.bAtributos.UseVisualStyleBackColor = true;
+            this.bAtributos.Click += new System.EventHandler(this.bAtributos_Click);
             // 
             // bCategorias
             // 
@@ -87,6 +79,7 @@
             this.bCategorias.TabIndex = 27;
             this.bCategorias.Text = "Categorias";
             this.bCategorias.UseVisualStyleBackColor = true;
+            this.bCategorias.Click += new System.EventHandler(this.bCategorias_Click);
             // 
             // bDashboard
             // 
@@ -97,6 +90,7 @@
             this.bDashboard.TabIndex = 26;
             this.bDashboard.Text = "Dashboard";
             this.bDashboard.UseVisualStyleBackColor = true;
+            this.bDashboard.Click += new System.EventHandler(this.bDashboard_Click);
             // 
             // dataGridView1
             // 
@@ -115,7 +109,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1012, 514);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.bProductos);
             this.Controls.Add(this.bCrearProducto);
             this.Controls.Add(this.bAtributos);
@@ -132,7 +125,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button bProductos;
         private System.Windows.Forms.Button bCrearProducto;
         private System.Windows.Forms.Button bAtributos;

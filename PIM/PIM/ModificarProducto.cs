@@ -82,6 +82,45 @@ namespace PIM
             }
         }
 
+        private void bCancelar_Click(object sender, EventArgs e)
+        {
+            ListarProducto listarProducto = new ListarProducto();
+            listarProducto.Show();
+            this.Hide();
+        }
+
+        private void bDashboard_Click(object sender, EventArgs e)
+        {
+            PantallaPrincipal c = new PantallaPrincipal();
+            c.Show();
+            this.Hide();
+        }
+
+        private void bProductos_Click(object sender, EventArgs e)
+        {
+            ListarProducto l = new ListarProducto();
+            l.Show();
+            this.Hide();
+        }
+
+        private void bCategorias_Click(object sender, EventArgs e)
+        {
+            ListarCategoria listarCategoria = new ListarCategoria();
+            listarCategoria.Show();
+            this.Hide();
+        }
+
+        private void bAtributos_Click(object sender, EventArgs e)
+        {
+            ListarAtributo listarAtributo = new ListarAtributo();
+            listarAtributo.Show();
+            this.Hide();
+        }
+
+
+
+
+
         // Otros métodos y eventos si es necesario
     }
 }

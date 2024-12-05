@@ -48,16 +48,28 @@ namespace PIM
                 };
                 dataGridView1.Columns.Add(btnBorrar);
             }
+
+            // Agregar la columna "Mostrar" si no existe
+            if (!dataGridView1.Columns.Contains("Mostrar"))
+            {
+                DataGridViewButtonColumn btnMostrar = new DataGridViewButtonColumn
+                {
+                    Name = "Mostrar",
+                    Text = "Mostrar",
+                    UseColumnTextForButtonValue = true
+                };
+                dataGridView1.Columns.Add(btnMostrar);
+            }
         }
 
         private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Verificar que el índice de fila y columna sean válidos
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count && e.ColumnIndex >= 0)
             {
                 string columnName = dataGridView1.Columns[e.ColumnIndex].Name;
 
-                if (columnName == "Editar" || columnName == "Borrar")
+                if (columnName == "Editar" || columnName == "Borrar" || columnName == "Mostrar")
                 {
                     var selectedRow = dataGridView1.Rows[e.RowIndex];
 
@@ -73,6 +85,10 @@ namespace PIM
                         else if (columnName == "Borrar")
                         {
                             BorrarProducto(sku);
+                        }
+                        else if (columnName == "Mostrar")
+                        {
+                            MostrarProducto(sku);
                         }
                     }
                 }
@@ -161,5 +177,78 @@ namespace PIM
                 dataGridView1.DataSource = productos;
             }
         }
+
+        private MostrarProducto mostrarForm; // Campo estático para la instancia de MostrarProducto
+
+        private void MostrarProducto(int sku)
+        {
+            using (TiendaEntities1 BD = new TiendaEntities1())
+            {
+                var producto = BD.Producto.FirstOrDefault(p => p.Sku == sku);
+
+                if (producto != null)
+                {
+                    // Verificar si ya hay una instancia abierta de MostrarProducto
+                    if (mostrarForm == null || mostrarForm.IsDisposed)
+                    {
+                        // Si no existe o ya ha sido cerrada, crear una nueva instancia
+                        mostrarForm = new MostrarProducto(producto);
+                        mostrarForm.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        // Si ya está abierta, llevarla al frente
+                        mostrarForm.BringToFront();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Producto no encontrado.");
+                }
+            }
+        }
+
+        private void bDashboard_Click(object sender, EventArgs e)
+        {
+            PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
+            pantallaPrincipal.Show();
+            this.Hide();
+        }
+
+        private void bProductos_Click(object sender, EventArgs e)
+        {
+
+            ListarProducto listarProductos = new ListarProducto();
+            listarProductos.Show();
+            this.Hide();
+        }
+
+        private void bCategorias_Click(object sender, EventArgs e)
+        {
+            ListarCategoria listarCategoria = new ListarCategoria();
+            listarCategoria.Show();
+            this.Hide();
+        }
+
+        private void bAtributos_Click(object sender, EventArgs e)
+        {
+           ListarAtributo listarAtributo = new ListarAtributo();
+            listarAtributo.Show();
+            this.Hide();
+        }
+
+        private void bCrearProducto_Click(object sender, EventArgs e)
+        {
+            CrearProducto crearProducto = new CrearProducto();
+            crearProducto.Show();
+            this.Hide();
+        }
+
+
+
+
+
+
     }
 }

@@ -61,6 +61,7 @@
             this.bModificar.TabIndex = 59;
             this.bModificar.Text = "MODIFICAR";
             this.bModificar.UseVisualStyleBackColor = false;
+            this.bModificar.Click += new System.EventHandler(this.bModificar_Click);
             // 
             // bEliminar
             // 
@@ -73,6 +74,7 @@
             this.bEliminar.TabIndex = 58;
             this.bEliminar.Text = "ELIMINAR";
             this.bEliminar.UseVisualStyleBackColor = false;
+            this.bEliminar.Click += new System.EventHandler(this.bEliminar_Click);
             // 
             // dataGridView1
             // 
@@ -190,6 +192,7 @@
             this.bProductos.TabIndex = 46;
             this.bProductos.Text = "Productos";
             this.bProductos.UseVisualStyleBackColor = true;
+            this.bProductos.Click += new System.EventHandler(this.bProductos_Click);
             // 
             // bAtributos
             // 
@@ -200,6 +203,7 @@
             this.bAtributos.TabIndex = 45;
             this.bAtributos.Text = "Atributos";
             this.bAtributos.UseVisualStyleBackColor = true;
+            this.bAtributos.Click += new System.EventHandler(this.bAtributos_Click);
             // 
             // bCategorias
             // 
@@ -210,6 +214,7 @@
             this.bCategorias.TabIndex = 44;
             this.bCategorias.Text = "Categorias";
             this.bCategorias.UseVisualStyleBackColor = true;
+            this.bCategorias.Click += new System.EventHandler(this.bCategorias_Click);
             // 
             // bDashboard
             // 
@@ -220,6 +225,7 @@
             this.bDashboard.TabIndex = 43;
             this.bDashboard.Text = "Dashboard";
             this.bDashboard.UseVisualStyleBackColor = true;
+            this.bDashboard.Click += new System.EventHandler(this.bDashboard_Click);
             // 
             // pbThumbnail
             // 
@@ -255,6 +261,7 @@
             this.Controls.Add(this.pbThumbnail);
             this.Name = "MostrarProducto";
             this.Text = "MostrarProducto";
+            this.Load += new System.EventHandler(this.MostrarProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbThumbnail)).EndInit();
             this.ResumeLayout(false);

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO; 
 
 namespace PIM
 {
@@ -56,6 +57,20 @@ namespace PIM
                 else
                 {
                     lbCategorias.Items.Add("No tiene categorías asociadas.");
+                }
+
+                // Cargar y mostrar el Thumbnail si está presente
+                if (producto.Thumbnail != null && producto.Thumbnail.Length > 0)
+                {
+                    using (MemoryStream ms = new MemoryStream(producto.Thumbnail))
+                    {
+                        pbThumbnail.Image = Image.FromStream(ms);  // Convertir los bytes a imagen y asignar al PictureBox
+                        pbThumbnail.SizeMode = PictureBoxSizeMode.StretchImage;  // Ajustar la imagen al tamaño del PictureBox
+                    }
+                }
+                else
+                {
+                    pbThumbnail.Image = null;  // Si no hay imagen, dejar el PictureBox vacío
                 }
             }
         }

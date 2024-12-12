@@ -27,7 +27,7 @@ namespace PIM
         public System.DateTime FechaCreacion { get; set; }
         public Nullable<System.DateTime> FechaModificacion { get; set; }
         public byte[] Thumbnail { get; set; }
-
+    
         public virtual ICollection<ValorAtributo> ValorAtributo { get; set; }
         public virtual ICollection<Categoria> Categoria { get; set; }
     }

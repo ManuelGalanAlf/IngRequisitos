@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TiendaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TiendaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Atributo">
           <Key>
             <PropertyRef Name="Id" />
@@ -32,6 +32,7 @@
           <Property Name="Nombre" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
           <Property Name="FechaModificacion" Type="datetime" />
+          <Property Name="Thumbnail" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="ProductoCategoria">
           <Key>
@@ -129,8 +130,7 @@
             <End Role="ValorAtributo" EntitySet="ValorAtributo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TiendaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -165,6 +165,7 @@
           <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ValorAtributo" Relationship="Self.FK_ValorAtributo_Producto" FromRole="Producto" ToRole="ValorAtributo" />
           <NavigationProperty Name="Categoria" Relationship="Self.ProductoCategoria" FromRole="Producto" ToRole="Categoria" />
+          <Property Name="Thumbnail" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="ValorAtributo">
           <Key>
@@ -255,6 +256,7 @@
           <EntitySetMapping Name="Producto">
             <EntityTypeMapping TypeName="TiendaModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Sku" ColumnName="Sku" />
                 <ScalarProperty Name="Gtin" ColumnName="Gtin" />

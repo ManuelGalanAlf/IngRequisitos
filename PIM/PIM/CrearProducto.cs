@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Data.Entity.Infrastructure;
 
 namespace PIM
 {
@@ -57,7 +58,6 @@ namespace PIM
             }
         }
 
-
         private void bConfirmar_Click(object sender, EventArgs e)
         {
             try
@@ -87,7 +87,7 @@ namespace PIM
 
                 Producto p = new Producto();
                 p.Sku = int.Parse(SKU);
-                p.Gtin = long.Parse(GTIN);  // Asumimos que GTIN se maneja como un número largo (long) para almacenarlo
+                p.Gtin = long.Parse(GTIN);  // Asumimos que GTIN se maneja como un número largo (long)
                 p.Nombre = NOMBRE;
                 p.FechaCreacion = DateTime.Today;
 
@@ -106,7 +106,7 @@ namespace PIM
                 }
 
                 BD.Producto.Add(p);
-                BD.SaveChanges();
+                BD.SaveChanges();  // Guardar el producto
 
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
@@ -129,7 +129,7 @@ namespace PIM
                                 atributo.NumeroProductos = atributo.NumeroProductos + 1;
                             }
 
-                            BD.SaveChanges();
+                            BD.SaveChanges();  // Guardar los valores de atributo
                         }
                     }
                 }
@@ -144,12 +144,18 @@ namespace PIM
                     }
                 }
 
-                BD.SaveChanges();
+                BD.SaveChanges();  // Guardar los cambios de las categorías
+
                 MessageBox.Show("Producto creado con éxito");
 
                 ListarProducto listarProducto = new ListarProducto();
                 listarProducto.Show();
                 this.Close();
+            }
+            catch (DbUpdateException dbEx)
+            {
+                MessageBox.Show("Error de base de datos: " + dbEx.Message);
+                // Puedes inspeccionar más detalles con dbEx.InnerException si es necesario
             }
             catch (Exception ex)
             {

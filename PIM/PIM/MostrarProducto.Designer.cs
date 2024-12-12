@@ -89,7 +89,7 @@
             // 
             // tSKU
             // 
-            this.tSKU.Location = new System.Drawing.Point(44, 357);
+            this.tSKU.Location = new System.Drawing.Point(55, 387);
             this.tSKU.Margin = new System.Windows.Forms.Padding(2);
             this.tSKU.Name = "tSKU";
             this.tSKU.ReadOnly = true;
@@ -98,7 +98,7 @@
             // 
             // tGtin
             // 
-            this.tGtin.Location = new System.Drawing.Point(44, 297);
+            this.tGtin.Location = new System.Drawing.Point(55, 327);
             this.tGtin.Margin = new System.Windows.Forms.Padding(2);
             this.tGtin.Name = "tGtin";
             this.tGtin.ReadOnly = true;
@@ -107,7 +107,7 @@
             // 
             // tNombre
             // 
-            this.tNombre.Location = new System.Drawing.Point(44, 128);
+            this.tNombre.Location = new System.Drawing.Point(45, 108);
             this.tNombre.Margin = new System.Windows.Forms.Padding(2);
             this.tNombre.Name = "tNombre";
             this.tNombre.ReadOnly = true;
@@ -117,7 +117,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(42, 93);
+            this.label6.Location = new System.Drawing.Point(42, 84);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 13);
@@ -127,7 +127,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(42, 334);
+            this.label5.Location = new System.Drawing.Point(53, 364);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(29, 13);
@@ -137,7 +137,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(42, 272);
+            this.label4.Location = new System.Drawing.Point(53, 302);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(33, 13);
@@ -176,7 +176,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 229);
+            this.label1.Location = new System.Drawing.Point(42, 146);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
@@ -185,7 +185,7 @@
             // 
             // bProductos
             // 
-            this.bProductos.Location = new System.Drawing.Point(193, 30);
+            this.bProductos.Location = new System.Drawing.Point(192, 26);
             this.bProductos.Margin = new System.Windows.Forms.Padding(2);
             this.bProductos.Name = "bProductos";
             this.bProductos.Size = new System.Drawing.Size(112, 47);
@@ -196,7 +196,7 @@
             // 
             // bAtributos
             // 
-            this.bAtributos.Location = new System.Drawing.Point(448, 30);
+            this.bAtributos.Location = new System.Drawing.Point(447, 26);
             this.bAtributos.Margin = new System.Windows.Forms.Padding(2);
             this.bAtributos.Name = "bAtributos";
             this.bAtributos.Size = new System.Drawing.Size(112, 47);
@@ -207,7 +207,7 @@
             // 
             // bCategorias
             // 
-            this.bCategorias.Location = new System.Drawing.Point(321, 30);
+            this.bCategorias.Location = new System.Drawing.Point(320, 26);
             this.bCategorias.Margin = new System.Windows.Forms.Padding(2);
             this.bCategorias.Name = "bCategorias";
             this.bCategorias.Size = new System.Drawing.Size(112, 47);
@@ -218,7 +218,7 @@
             // 
             // bDashboard
             // 
-            this.bDashboard.Location = new System.Drawing.Point(68, 30);
+            this.bDashboard.Location = new System.Drawing.Point(67, 26);
             this.bDashboard.Margin = new System.Windows.Forms.Padding(2);
             this.bDashboard.Name = "bDashboard";
             this.bDashboard.Size = new System.Drawing.Size(112, 47);
@@ -232,7 +232,7 @@
             this.pbThumbnail.Location = new System.Drawing.Point(42, 171);
             this.pbThumbnail.Margin = new System.Windows.Forms.Padding(2);
             this.pbThumbnail.Name = "pbThumbnail";
-            this.pbThumbnail.Size = new System.Drawing.Size(37, 46);
+            this.pbThumbnail.Size = new System.Drawing.Size(126, 114);
             this.pbThumbnail.TabIndex = 42;
             this.pbThumbnail.TabStop = false;
             // 

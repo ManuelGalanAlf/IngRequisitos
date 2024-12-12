@@ -145,15 +145,5 @@ namespace PIM
             listarAtributo.Show();
             this.Hide();
         }
-
-
-
-
-
-
-
-
-
-
     }
 }

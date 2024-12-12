@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Windows.Forms;
 using System.Data;
+using System.Drawing;
+using System.IO;
 
 namespace PIM
 {
@@ -40,6 +42,9 @@ namespace PIM
             // Asignar la tabla al DataGridView
             dataGridView1.DataSource = dataTable;
 
+            // Ocultar la columna "Id"
+            dataGridView1.Columns["Id"].Visible = false;
+
             // Permitir edición solo en la columna "Valor"
             dataGridView1.Columns["Valor"].ReadOnly = false;
             dataGridView1.Columns["Nombre"].ReadOnly = true; // Opcional, para evitar editar "Tipo"
@@ -51,6 +56,7 @@ namespace PIM
                 clbCategorias.Items.Add(c.Nombre);
             }
         }
+
 
         private void bConfirmar_Click(object sender, EventArgs e)
         {
@@ -64,11 +70,14 @@ namespace PIM
                     return;
                 }
                 string GTIN = tbGtin.Text;
-                if (String.IsNullOrEmpty(GTIN))
+
+                // Validación de GTIN para asegurarse que sea un número de exactamente 13 dígitos
+                if (String.IsNullOrEmpty(GTIN) || GTIN.Length != 13 || !GTIN.All(char.IsDigit))
                 {
-                    MessageBox.Show("El Gtin es obligatorio");
+                    MessageBox.Show("El GTIN debe ser un número de 13 dígitos.");
                     return;
                 }
+
                 string NOMBRE = tbNombre.Text;
                 if (String.IsNullOrEmpty(NOMBRE))
                 {
@@ -78,31 +87,42 @@ namespace PIM
 
                 Producto p = new Producto();
                 p.Sku = int.Parse(SKU);
-                p.Gtin = int.Parse(GTIN);
+                p.Gtin = long.Parse(GTIN);  // Asumimos que GTIN se maneja como un número largo (long) para almacenarlo
                 p.Nombre = NOMBRE;
                 p.FechaCreacion = DateTime.Today;
+
+                // Aquí se guarda la imagen en formato de byte[]
+                if (ofd_Thumbnail.FileName != "")
+                {
+                    // Convertir la imagen seleccionada en un array de bytes
+                    byte[] imageBytes = File.ReadAllBytes(ofd_Thumbnail.FileName);
+                    p.Thumbnail = imageBytes;  // Asignar el array de bytes al campo Thumbnail
+
+                    // Mostrar la imagen en el PictureBox
+                    pbThumbnail.Image = Image.FromFile(ofd_Thumbnail.FileName);  // Cargar la imagen
+
+                    // Ajustar la imagen al tamaño del PictureBox
+                    pbThumbnail.SizeMode = PictureBoxSizeMode.StretchImage;  // Establecer el ajuste automático de la imagen
+                }
 
                 BD.Producto.Add(p);
                 BD.SaveChanges();
 
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    // Verifica que la fila no sea la fila "nueva" (si está habilitada)
                     if (!row.IsNewRow)
                     {
-                        // Accede a las celdas de la fila
-                        var valorCelda = row.Cells["Valor"].Value; // Usa el nombre de la columna
+                        var valorCelda = row.Cells["Valor"].Value;
                         if (valorCelda != "")
                         {
-                            ValorAtributo nuevoValorAtributo = new ValorAtributo();
-
-                            nuevoValorAtributo.ProductoId = p.Id; // Relacionar con este producto usando el Id
-                            nuevoValorAtributo.AtributoId = (int)row.Cells["Id"].Value; // Relacionar con el atributo usando el Id
-                            nuevoValorAtributo.Valor = (string)valorCelda;
-
+                            ValorAtributo nuevoValorAtributo = new ValorAtributo
+                            {
+                                ProductoId = p.Id,
+                                AtributoId = (int)row.Cells["Id"].Value,
+                                Valor = (string)valorCelda
+                            };
                             BD.ValorAtributo.Add(nuevoValorAtributo);
 
-                            // Actualizar el número de productos en el atributo
                             Atributo atributo = BD.Atributo.FirstOrDefault(a => a.Id == nuevoValorAtributo.AtributoId);
                             if (atributo != null)
                             {
@@ -110,25 +130,21 @@ namespace PIM
                             }
 
                             BD.SaveChanges();
-
                         }
                     }
                 }
 
                 foreach (string item in clbCategorias.CheckedItems)
                 {
-                    // Buscar la categoría por nombre
                     var categoria = BD.Categoria.FirstOrDefault(c => c.Nombre == item);
-
                     if (categoria != null)
                     {
-                        // Agregar la categoría al producto
                         p.Categoria.Add(categoria);
                         categoria.NumeroProductos = categoria.NumeroProductos + 1;
                     }
                 }
 
-                BD.SaveChanges(); // Guardar los cambios en las categorías
+                BD.SaveChanges();
                 MessageBox.Show("Producto creado con éxito");
 
                 ListarProducto listarProducto = new ListarProducto();
@@ -144,6 +160,17 @@ namespace PIM
         private void bCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void bThumbnail_Click(object sender, EventArgs e)
+        {
+            if (ofd_Thumbnail.ShowDialog() == DialogResult.OK)
+            {
+                pbThumbnail.Image = Image.FromFile(ofd_Thumbnail.FileName);
+
+                // Ajustar la imagen al tamaño del PictureBox
+                pbThumbnail.SizeMode = PictureBoxSizeMode.StretchImage;  // Establecer el ajuste automático de la imagen
+            }
         }
     }
 }

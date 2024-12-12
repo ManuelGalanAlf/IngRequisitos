@@ -61,6 +61,7 @@
             this.bThumbnail.TabIndex = 47;
             this.bThumbnail.Text = "Añadir thumbnail";
             this.bThumbnail.UseVisualStyleBackColor = true;
+            this.bThumbnail.Click += new System.EventHandler(this.bThumbnail_Click);
             // 
             // pbThumbnail
             // 

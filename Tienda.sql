@@ -1,5 +1,11 @@
 USE [master]
 GO
+IF EXISTS (SELECT 1 FROM sys.databases WHERE [name] = 'Tienda')
+BEGIN
+	DROP DATABASE Tienda
+END;
+
+
 /****** Object:  Database [Tienda]    Script Date: 04/12/2024 19:30:23 ******/
 CREATE DATABASE [Tienda]
  CONTAINMENT = NONE
@@ -120,6 +126,7 @@ CREATE TABLE [dbo].[Producto](
 	[Nombre] [nvarchar](255) NOT NULL,
 	[FechaCreacion] [datetime] NOT NULL DEFAULT (getdate()),
 	[FechaModificacion] [datetime] NULL,
+	[Thumbnail] VARBINARY(MAX) NULL
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

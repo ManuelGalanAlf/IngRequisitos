@@ -11,6 +11,7 @@ namespace PIM
     public partial class ModificarProducto : Form
     {
         private Producto producto;
+        TiendaEntities1 BD = new TiendaEntities1();
 
         public ModificarProducto(Producto producto)
         {
@@ -126,115 +127,120 @@ namespace PIM
         {
             try
             {
-                using (TiendaEntities1 BD = new TiendaEntities1())
+                // Convertir el GTIN fuera de la consulta LINQ
+                long gtinBuscado = long.Parse(tbGtin.Text);
+
+                // Obtener el producto a actualizar por su GTIN
+                var productoParaActualizar = BD.Producto.FirstOrDefault(p => p.Gtin == gtinBuscado);
+
+                if (productoParaActualizar == null)
                 {
-                    // Obtener el producto usando su Id
-                    var productoParaActualizar = BD.Producto.FirstOrDefault(p => p.Id == producto.Id);
+                    MessageBox.Show("Producto no encontrado.");
+                    return;
+                }
 
-                    if (productoParaActualizar != null)
+                // Actualizar los datos básicos del producto
+                productoParaActualizar.Nombre = tbNombre.Text;
+                productoParaActualizar.Gtin = gtinBuscado;
+                productoParaActualizar.Sku = int.Parse(tbSku.Text);
+                productoParaActualizar.FechaModificacion = DateTime.Today;
+
+                // Procesar los valores de los atributos
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Cells["Id"].Value == null) continue;
+
+                    int atributoId = (int)row.Cells["Id"].Value;
+                    string valor = row.Cells["Valor"].Value != null ? row.Cells["Valor"].Value.ToString() : string.Empty;
+
+                    // Buscar el ValorAtributo existente para el producto y el atributo actual
+                    var valorAtributoExistente = BD.ValorAtributo
+                        .FirstOrDefault(va => va.ProductoId == productoParaActualizar.Id && va.AtributoId == atributoId);
+
+                    if (string.IsNullOrWhiteSpace(valor))
                     {
-                        // Actualizar los datos básicos del producto
-                        productoParaActualizar.Nombre = tbNombre.Text;
-                        productoParaActualizar.Gtin = Convert.ToInt64(tbGtin.Text);
-                        productoParaActualizar.Sku = int.Parse(tbSku.Text);
-
-                        // Actualizar la fecha de modificación con la fecha actual
-                        productoParaActualizar.FechaModificacion = DateTime.Today;
-
-                        // Verificar si se ha actualizado el thumbnail (imagen)
-                        if (pbThumbnail.Image != null)
+                        // Si el valor está vacío y existe un registro en la base de datos, eliminarlo
+                        if (valorAtributoExistente != null)
                         {
-                            // Convertir la imagen en bytes
-                            using (MemoryStream ms = new MemoryStream())
-                            {
-                                pbThumbnail.Image.Save(ms, pbThumbnail.Image.RawFormat);
-                                byte[] thumbnailBytes = ms.ToArray();
-
-                                // Actualizar el thumbnail en la base de datos
-                                productoParaActualizar.Thumbnail = thumbnailBytes;
-                            }
+                            BD.ValorAtributo.Remove(valorAtributoExistente);
                         }
-
-                        // Actualizar atributos
-                        foreach (DataGridViewRow row in dataGridView1.Rows)
-                        {
-                            if (row.IsNewRow) continue;
-
-                            int atributoId = Convert.ToInt32(row.Cells["Id"].Value);
-                            string valorAtributo = (row.Cells["Valor"].Value != null) ? row.Cells["Valor"].Value.ToString().Trim() : string.Empty;
-
-                            if (!string.IsNullOrEmpty(valorAtributo))
-                            {
-                                // Buscar si ya existe un ValorAtributo para este producto y atributo
-                                var atributo = BD.ValorAtributo
-                                    .FirstOrDefault(va => va.ProductoId == producto.Id && va.AtributoId == atributoId);
-
-                                if (atributo != null)
-                                {
-                                    // Actualiza el valor existente
-                                    atributo.Valor = valorAtributo;
-                                }
-                                else
-                                {
-                                    // Inserta un nuevo registro si no existe
-                                    var nuevoValorAtributo = new ValorAtributo
-                                    {
-                                        ProductoId = producto.Id,
-                                        AtributoId = atributoId,
-                                        Valor = valorAtributo
-                                    };
-                                    BD.ValorAtributo.Add(nuevoValorAtributo);
-                                }
-                            }
-                        }
-
-                        // Obtener las categorías seleccionadas del CheckedListBox por su Id
-                        var categoriasSeleccionadas = clbCategorias.CheckedItems.Cast<string>()
-                            .Select(item => BD.Categoria.FirstOrDefault(c => c.Nombre == item))
-                            .Where(c => c != null)
-                            .ToList();
-
-                        // Obtener las categorías actuales asociadas al producto
-                        var categoriasActuales = productoParaActualizar.Categoria.ToList();
-
-                        // Añadir nuevas categorías
-                        foreach (var categoria in categoriasSeleccionadas)
-                        {
-                            if (!categoriasActuales.Contains(categoria))
-                            {
-                                productoParaActualizar.Categoria.Add(categoria);
-                                categoria.NumeroProductos++;
-                            }
-                        }
-
-                        // Eliminar categorías no seleccionadas
-                        foreach (var categoria in categoriasActuales)
-                        {
-                            if (!categoriasSeleccionadas.Contains(categoria))
-                            {
-                                productoParaActualizar.Categoria.Remove(categoria);
-                                categoria.NumeroProductos--;
-                            }
-                        }
-
-                        // Guardar cambios en la base de datos
-                        BD.SaveChanges();
-                        MessageBox.Show("Producto actualizado correctamente.");
-                        this.Close();
-                        ListarProducto listarProducto = new ListarProducto();
-                        listarProducto.Show();
                     }
                     else
                     {
-                        MessageBox.Show("Producto no encontrado en la base de datos.");
+                        // Si el valor no está vacío, actualizar o crear un nuevo registro
+                        if (valorAtributoExistente != null)
+                        {
+                            valorAtributoExistente.Valor = valor;
+                        }
+                        else
+                        {
+                            // Crear un nuevo ValorAtributo si no existe
+                            BD.ValorAtributo.Add(new ValorAtributo
+                            {
+                                ProductoId = productoParaActualizar.Id,
+                                AtributoId = atributoId,
+                                Valor = valor
+                            });
+                        }
                     }
                 }
+
+                // Obtener las categorías seleccionadas en el CheckedListBox
+                var categoriasSeleccionadas = clbCategorias.CheckedItems.Cast<string>()
+                    .Select(nombreCategoria => BD.Categoria.FirstOrDefault(c => c.Nombre == nombreCategoria))
+                    .Where(c => c != null)
+                    .ToList();
+
+                // Obtener las categorías actualmente asociadas al producto
+                var categoriasAsociadas = productoParaActualizar.Categoria.ToList();
+
+                // Desasociar categorías desmarcadas
+                foreach (var categoria in categoriasAsociadas)
+                {
+                    if (!categoriasSeleccionadas.Contains(categoria))
+                    {
+                        productoParaActualizar.Categoria.Remove(categoria);
+                        if (categoria.NumeroProductos > 0)
+                        {
+                            categoria.NumeroProductos--;
+                        }
+                    }
+                }
+
+                // Asociar nuevas categorías seleccionadas
+                foreach (var categoria in categoriasSeleccionadas)
+                {
+                    if (!productoParaActualizar.Categoria.Contains(categoria))
+                    {
+                        productoParaActualizar.Categoria.Add(categoria);
+                        categoria.NumeroProductos++;
+                    }
+                }
+
+                // Guardar los cambios en una transacción para asegurar consistencia
+                using (var transaction = BD.Database.BeginTransaction())
+                {
+                    BD.SaveChanges();
+                    transaction.Commit();
+                }
+
+                MessageBox.Show("Producto actualizado correctamente.");
+                this.Close();
+
+                // Abrir el formulario de listado de productos
+                ListarProducto listarProducto = new ListarProducto();
+                listarProducto.Show();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al actualizar el producto: " + ex.Message);
             }
         }
+
+
+
+
+
 
         private void bCancelar_Click(object sender, EventArgs e)
         {

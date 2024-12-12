@@ -50,7 +50,7 @@
             // 
             // bCrearProducto
             // 
-            this.bCrearProducto.Location = new System.Drawing.Point(728, 218);
+            this.bCrearProducto.Location = new System.Drawing.Point(728, 232);
             this.bCrearProducto.Margin = new System.Windows.Forms.Padding(2);
             this.bCrearProducto.Name = "bCrearProducto";
             this.bCrearProducto.Size = new System.Drawing.Size(191, 47);
@@ -97,10 +97,10 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(146, 181);
+            this.dataGridView1.Location = new System.Drawing.Point(137, 179);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(499, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(501, 185);
             this.dataGridView1.TabIndex = 25;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
             // 

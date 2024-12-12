@@ -24,6 +24,7 @@ namespace PIM
             // Cargar las categorías en el DataGridView
             CargarCategorias();
 
+
             // Agregar columna "Editar"
             DataGridViewButtonColumn editarBtn = new DataGridViewButtonColumn
             {
@@ -110,6 +111,9 @@ namespace PIM
                                             Nombre = d.Nombre,
                                             NúmerodeProductos = d.NumeroProductos // Conteo de productos
                                         }).ToList();
+
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
         }
 
         private void bDashboard_Click(object sender, EventArgs e)
@@ -151,7 +155,5 @@ namespace PIM
         {
 
         }
-
-
     }
 }

@@ -73,10 +73,10 @@ namespace PIM
                 {
                     var selectedRow = dataGridView1.Rows[e.RowIndex];
 
-                    // Verificar si la fila tiene datos válidos en la columna "Sku"
-                    if (selectedRow.Cells["Sku"].Value != null)
+                    // Verificar si la fila tiene datos válidos en la columna "SKU"
+                    if (selectedRow.Cells["SKU"].Value != null)
                     {
-                        int sku = Convert.ToInt32(selectedRow.Cells["Sku"].Value);
+                        int sku = Convert.ToInt32(selectedRow.Cells["SKU"].Value);
 
                         if (columnName == "Editar")
                         {
@@ -170,8 +170,8 @@ namespace PIM
                 var productos = (from p in BD.Producto
                                  select new
                                  {
-                                     Sku = p.Sku,
-                                     Gtin = p.Gtin,
+                                     SKU = p.Sku,  // Renombrar la columna a "SKU"
+                                     GTIN = p.Gtin,  // Renombrar la columna a "GTIN"
                                      Nombre = p.Nombre,
                                  }).ToList();
 
@@ -219,7 +219,6 @@ namespace PIM
 
         private void bProductos_Click(object sender, EventArgs e)
         {
-
             ListarProducto listarProductos = new ListarProducto();
             listarProductos.Show();
             this.Hide();
@@ -234,7 +233,7 @@ namespace PIM
 
         private void bAtributos_Click(object sender, EventArgs e)
         {
-           ListarAtributo listarAtributo = new ListarAtributo();
+            ListarAtributo listarAtributo = new ListarAtributo();
             listarAtributo.Show();
             this.Hide();
         }
@@ -245,11 +244,5 @@ namespace PIM
             crearProducto.Show();
             this.Hide();
         }
-
-
-
-
-
-
     }
 }

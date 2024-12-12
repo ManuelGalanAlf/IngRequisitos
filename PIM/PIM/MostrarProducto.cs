@@ -44,6 +44,7 @@ namespace PIM
                                       va.Valor
                                   }).ToList();
                 dataGridView1.DataSource = atributos;
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
                 // Mostrar las categorías del producto en el ListBox
                 lbCategorias.Items.Clear();

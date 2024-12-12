@@ -113,6 +113,13 @@ namespace PIM
 
         private void bAtributos_Click(object sender, EventArgs e)
         {
+            ListarAtributo listarAtributo = new ListarAtributo();
+            listarAtributo.Show();
+            this.Hide();
+        }
+
+        private void bProductos_Click(object sender, EventArgs e)
+        {
             ListarProducto listarProducto = new ListarProducto();
             listarProducto.Show();
             this.Hide();
@@ -159,6 +166,8 @@ namespace PIM
                 }
             }
         }
+
+       
 
 
 

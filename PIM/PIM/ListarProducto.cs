@@ -105,6 +105,7 @@ namespace PIM
                 {
                     var editarForm = new ModificarProducto(producto);
                     editarForm.ShowDialog();
+                    this.Close();
                     CargarProductos();
                 }
                 else

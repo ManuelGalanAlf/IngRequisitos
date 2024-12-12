@@ -46,6 +46,7 @@
             this.bProductos.TabIndex = 35;
             this.bProductos.Text = "Productos";
             this.bProductos.UseVisualStyleBackColor = true;
+            this.bProductos.Click += new System.EventHandler(this.bProductos_Click);
             // 
             // bCrearAtributo
             // 

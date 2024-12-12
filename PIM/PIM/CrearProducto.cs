@@ -113,7 +113,7 @@ namespace PIM
                     if (!row.IsNewRow)
                     {
                         var valorCelda = row.Cells["Valor"].Value;
-                        if (valorCelda != "")
+                        if (valorCelda != null && valorCelda.ToString() != "")
                         {
                             ValorAtributo nuevoValorAtributo = new ValorAtributo
                             {

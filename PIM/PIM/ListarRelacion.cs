@@ -60,28 +60,38 @@ namespace PIM
         {
             using (TiendaEntities1 BD = new TiendaEntities1())
             {
-                // Obtener la relación que se va a eliminar
+                // Buscar la relación por su ID para obtener el nombre
                 var relacion = BD.Relacion.FirstOrDefault(r => r.Id == idRelacion);
 
                 if (relacion != null)
                 {
+                    string nombreRelacion = relacion.NombreRelacion;
+
                     // Confirmar con el usuario antes de borrar
                     DialogResult confirmacion = MessageBox.Show(
-                        "¿Está seguro de que desea borrar esta relación y todas las relacionadas por el mismo nombre?",
+                        string.Format("¿Está seguro de que desea borrar todas las relaciones con el nombre '{0}'?", nombreRelacion),
                         "Confirmar",
-                        MessageBoxButtons.YesNo);
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
 
                     if (confirmacion == DialogResult.Yes)
                     {
                         // Obtener todas las relaciones con el mismo nombre
-                        var relacionesAgrupadas = BD.Relacion.Where(r => r.NombreRelacion == relacion.NombreRelacion).ToList();
+                        var relacionesAgrupadas = BD.Relacion.Where(r => r.NombreRelacion == nombreRelacion).ToList();
 
-                        // Eliminar todas las relaciones agrupadas
-                        BD.Relacion.RemoveRange(relacionesAgrupadas);
-                        BD.SaveChanges();
+                        if (relacionesAgrupadas.Any())
+                        {
+                            // Eliminar todas las relaciones agrupadas
+                            BD.Relacion.RemoveRange(relacionesAgrupadas);
+                            BD.SaveChanges();
 
-                        MessageBox.Show("Relaciones borradas correctamente.");
-                        CargarRelaciones(); // Actualizar el DataGridView después de borrar
+                            MessageBox.Show("Relaciones borradas correctamente.");
+                            CargarRelaciones(); // Actualizar el DataGridView después de borrar
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontraron relaciones con ese nombre.");
+                        }
                     }
                 }
                 else
@@ -100,14 +110,14 @@ namespace PIM
             {
                 string columnName = dataGridView1.Columns[e.ColumnIndex].Name;
 
-                if (columnName == "Editar" || columnName == "Borrar" || columnName == "Mostrar")
+                if (columnName == "Editar" || columnName == "Borrar")
                 {
                     var selectedRow = dataGridView1.Rows[e.RowIndex];
 
-                    // Verificar si la fila tiene datos válidos en la columna "ID Relacion"
-                    if (selectedRow.Cells["ID Relacion"].Value != null)
+                    // Verificar si la fila tiene datos válidos en la columna "Id"
+                    if (selectedRow.Cells["Id"].Value != null)
                     {
-                        int idRelacion = Convert.ToInt32(selectedRow.Cells["ID Relacion"].Value);
+                        int idRelacion = Convert.ToInt32(selectedRow.Cells["Id"].Value);
 
                         if (columnName == "Editar")
                         {
@@ -148,18 +158,47 @@ namespace PIM
         {
             using (TiendaEntities1 BD = new TiendaEntities1())
             {
-                // Consulta modificada para solo mostrar relaciones con nombres diferentes
-                var relaciones = (from r in BD.Relacion
-                                  group r by r.NombreRelacion into g// Asegura que solo se muestren relaciones con nombres únicos
-                                  select new
-                                  {
-                                      NombreRelacion = g.Key,  // Nombre de la relación
- 
-                                  }).ToList();
+                // Verifica que la colección 'Relacion' no sea null
+                if (BD.Relacion == null)
+                {
+                    MessageBox.Show("No se pudo acceder a las relaciones en la base de datos.");
+                    return; // Detiene el proceso si la colección es null
+                }
 
-                dataGridView1.DataSource = relaciones;
+                try
+                {
+                    // Agrupar las relaciones por NombreRelacion para evitar duplicados
+                    var relaciones = (from r in BD.Relacion
+                                      group r by r.NombreRelacion into g
+                                      select new
+                                      {
+                                          Id = g.FirstOrDefault().Id,  // Incluir el Id de la relación
+                                          NombreRelacion = g.Key,      // Nombre único de la relación
+                                      }).ToList();
+
+                    // Verificar si hay resultados
+                    if (relaciones == null || !relaciones.Any())
+                    {
+                        MessageBox.Show("No se encontraron relaciones.");
+                        return; // Si no hay relaciones, muestra un mensaje y detiene el proceso
+                    }
+
+                    // Establecer los datos del DataGridView
+                    dataGridView1.DataSource = relaciones;
+
+                    // Verificar que la columna 'Id' existe antes de intentar ocultarla
+                    if (dataGridView1.Columns.Contains("Id"))
+                    {
+                        dataGridView1.Columns["Id"].Visible = false;  // Puedes ocultarla si lo deseas
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las relaciones: " + ex.Message);
+                }
             }
         }
+
 
         private void bCrearRelacion_Click(object sender, EventArgs e)
         {

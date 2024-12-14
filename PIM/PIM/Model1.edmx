@@ -42,6 +42,25 @@
           <Property Name="ProductoId" Type="int" Nullable="false" />
           <Property Name="CategoriaId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Relacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreRelacion" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Producto1" Type="int" Nullable="false" />
+          <Property Name="Producto2" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="ValorAtributo">
           <Key>
             <PropertyRef Name="ProductoId" />
@@ -79,6 +98,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Relacion_Producto1">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Relacion" Type="Self.Relacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Relacion">
+              <PropertyRef Name="Producto1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relacion_Producto2">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Relacion" Type="Self.Relacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Relacion">
+              <PropertyRef Name="Producto2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ValorAtributo_Atributo">
           <End Role="Atributo" Type="Self.Atributo" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -112,6 +155,8 @@
           <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductoCategoria" EntityType="Self.ProductoCategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Relacion" EntityType="Self.Relacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ValorAtributo" EntityType="Self.ValorAtributo" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ProductoCategoria_Categoria" Association="Self.FK_ProductoCategoria_Categoria">
             <End Role="Categoria" EntitySet="Categoria" />
@@ -120,6 +165,14 @@
           <AssociationSet Name="FK_ProductoCategoria_Producto" Association="Self.FK_ProductoCategoria_Producto">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="ProductoCategoria" EntitySet="ProductoCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relacion_Producto1" Association="Self.FK_Relacion_Producto1">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Relacion" EntitySet="Relacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relacion_Producto2" Association="Self.FK_Relacion_Producto2">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Relacion" EntitySet="Relacion" />
           </AssociationSet>
           <AssociationSet Name="FK_ValorAtributo_Atributo" Association="Self.FK_ValorAtributo_Atributo">
             <End Role="Atributo" EntitySet="Atributo" />
@@ -142,7 +195,7 @@
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Tipo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NumeroProductos" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ValorAtributo" Relationship="Self.FK_ValorAtributo_Atributo" FromRole="Atributo" ToRole="ValorAtributo" />
+          <NavigationProperty Name="ValorAtributo" Relationship="TiendaModel.FK_ValorAtributo_Atributo" FromRole="Atributo" ToRole="ValorAtributo" />
         </EntityType>
         <EntityType Name="Categoria">
           <Key>
@@ -163,10 +216,89 @@
           <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="ValorAtributo" Relationship="Self.FK_ValorAtributo_Producto" FromRole="Producto" ToRole="ValorAtributo" />
           <NavigationProperty Name="Categoria" Relationship="Self.ProductoCategoria" FromRole="Producto" ToRole="Categoria" />
           <Property Name="Thumbnail" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Relacion" Relationship="TiendaModel.FK_Relacion_Producto1" FromRole="Producto" ToRole="Relacion" />
+          <NavigationProperty Name="Relacion1" Relationship="TiendaModel.FK_Relacion_Producto2" FromRole="Producto" ToRole="Relacion" />
+          <NavigationProperty Name="ValorAtributo" Relationship="TiendaModel.FK_ValorAtributo_Producto" FromRole="Producto" ToRole="ValorAtributo" />
+          </EntityType>
+        <Association Name="ProductoCategoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="*" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="TiendaEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Atributo" EntityType="Self.Atributo" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <AssociationSet Name="ProductoCategoria" Association="Self.ProductoCategoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="TiendaModel.sysdiagrams" />
+          <EntitySet Name="Relacion" EntityType="TiendaModel.Relacion" />
+          <AssociationSet Name="FK_Relacion_Producto1" Association="TiendaModel.FK_Relacion_Producto1">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Relacion" EntitySet="Relacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relacion_Producto2" Association="TiendaModel.FK_Relacion_Producto2">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Relacion" EntitySet="Relacion" />
+          </AssociationSet>
+          <EntitySet Name="ValorAtributo" EntityType="TiendaModel.ValorAtributo" />
+          <AssociationSet Name="FK_ValorAtributo_Atributo" Association="TiendaModel.FK_ValorAtributo_Atributo">
+            <End Role="Atributo" EntitySet="Atributo" />
+            <End Role="ValorAtributo" EntitySet="ValorAtributo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValorAtributo_Producto" Association="TiendaModel.FK_ValorAtributo_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="ValorAtributo" EntitySet="ValorAtributo" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="Relacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreRelacion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Producto1" Type="Int32" Nullable="false" />
+          <Property Name="Producto2" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="TiendaModel.FK_Relacion_Producto1" FromRole="Relacion" ToRole="Producto" />
+          <NavigationProperty Name="Producto3" Relationship="TiendaModel.FK_Relacion_Producto2" FromRole="Relacion" ToRole="Producto" />
+        </EntityType>
+        <Association Name="FK_Relacion_Producto1">
+          <End Type="TiendaModel.Producto" Role="Producto" Multiplicity="1" />
+          <End Type="TiendaModel.Relacion" Role="Relacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Relacion">
+              <PropertyRef Name="Producto1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relacion_Producto2">
+          <End Type="TiendaModel.Producto" Role="Producto" Multiplicity="1" />
+          <End Type="TiendaModel.Relacion" Role="Relacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Relacion">
+              <PropertyRef Name="Producto2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="ValorAtributo">
           <Key>
             <PropertyRef Name="ProductoId" />
@@ -175,14 +307,14 @@
           <Property Name="ProductoId" Type="Int32" Nullable="false" />
           <Property Name="AtributoId" Type="Int32" Nullable="false" />
           <Property Name="Valor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Atributo" Relationship="Self.FK_ValorAtributo_Atributo" FromRole="ValorAtributo" ToRole="Atributo" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK_ValorAtributo_Producto" FromRole="ValorAtributo" ToRole="Producto" />
+          <NavigationProperty Name="Atributo" Relationship="TiendaModel.FK_ValorAtributo_Atributo" FromRole="ValorAtributo" ToRole="Atributo" />
+          <NavigationProperty Name="Producto" Relationship="TiendaModel.FK_ValorAtributo_Producto" FromRole="ValorAtributo" ToRole="Producto" />
         </EntityType>
         <Association Name="FK_ValorAtributo_Atributo">
-          <End Role="Atributo" Type="Self.Atributo" Multiplicity="1">
+          <End Type="TiendaModel.Atributo" Role="Atributo" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="ValorAtributo" Type="Self.ValorAtributo" Multiplicity="*" />
+          <End Type="TiendaModel.ValorAtributo" Role="ValorAtributo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Atributo">
               <PropertyRef Name="Id" />
@@ -193,10 +325,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ValorAtributo_Producto">
-          <End Role="Producto" Type="Self.Producto" Multiplicity="1">
+          <End Type="TiendaModel.Producto" Role="Producto" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="ValorAtributo" Type="Self.ValorAtributo" Multiplicity="*" />
+          <End Type="TiendaModel.ValorAtributo" Role="ValorAtributo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Producto">
               <PropertyRef Name="Id" />
@@ -206,29 +338,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ProductoCategoria">
-          <End Role="Categoria" Type="Self.Categoria" Multiplicity="*" />
-          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="TiendaEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Atributo" EntityType="Self.Atributo" />
-          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
-          <EntitySet Name="Producto" EntityType="Self.Producto" />
-          <EntitySet Name="ValorAtributo" EntityType="Self.ValorAtributo" />
-          <AssociationSet Name="FK_ValorAtributo_Atributo" Association="Self.FK_ValorAtributo_Atributo">
-            <End Role="Atributo" EntitySet="Atributo" />
-            <End Role="ValorAtributo" EntitySet="ValorAtributo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ValorAtributo_Producto" Association="Self.FK_ValorAtributo_Producto">
-            <End Role="Producto" EntitySet="Producto" />
-            <End Role="ValorAtributo" EntitySet="ValorAtributo" />
-          </AssociationSet>
-          <AssociationSet Name="ProductoCategoria" Association="Self.ProductoCategoria">
-            <End Role="Categoria" EntitySet="Categoria" />
-            <End Role="Producto" EntitySet="Producto" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -266,15 +376,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ValorAtributo">
-            <EntityTypeMapping TypeName="TiendaModel.ValorAtributo">
-              <MappingFragment StoreEntitySet="ValorAtributo">
-                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
-                <ScalarProperty Name="AtributoId" ColumnName="AtributoId" />
-                <ScalarProperty Name="Valor" ColumnName="Valor" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="ProductoCategoria" TypeName="TiendaModel.ProductoCategoria" StoreEntitySet="ProductoCategoria">
             <EndProperty Name="Categoria">
               <ScalarProperty Name="Id" ColumnName="CategoriaId" />
@@ -283,6 +384,36 @@
               <ScalarProperty Name="Id" ColumnName="ProductoId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TiendaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Relacion">
+            <EntityTypeMapping TypeName="TiendaModel.Relacion">
+              <MappingFragment StoreEntitySet="Relacion">
+                <ScalarProperty Name="Producto2" ColumnName="Producto2" />
+                <ScalarProperty Name="Producto1" ColumnName="Producto1" />
+                <ScalarProperty Name="NombreRelacion" ColumnName="NombreRelacion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ValorAtributo">
+            <EntityTypeMapping TypeName="TiendaModel.ValorAtributo">
+              <MappingFragment StoreEntitySet="ValorAtributo">
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="AtributoId" ColumnName="AtributoId" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

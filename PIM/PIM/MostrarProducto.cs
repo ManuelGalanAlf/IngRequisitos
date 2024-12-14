@@ -131,7 +131,7 @@ namespace PIM
         {
             ModificarProducto m = new ModificarProducto(producto);
             m.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void bDashboard_Click(object sender, EventArgs e)
@@ -144,7 +144,7 @@ namespace PIM
         private void bProductos_Click(object sender, EventArgs e)
         {
             ListarProducto l = new ListarProducto();
-            l.Show();
+            l.Show(); 
             this.Hide();
         }
 
@@ -159,6 +159,13 @@ namespace PIM
         {
             ListarAtributo listarAtributo = new ListarAtributo();
             listarAtributo.Show();
+            this.Hide();
+        }
+
+        private void bRelaciones_Click(object sender, EventArgs e)
+        {
+            ListarRelacion listarRelacion = new ListarRelacion();
+            listarRelacion.Show();
             this.Hide();
         }
     }

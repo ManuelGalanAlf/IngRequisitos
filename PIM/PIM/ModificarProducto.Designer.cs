@@ -48,6 +48,7 @@
             this.lNombre = new System.Windows.Forms.Label();
             this.lSku = new System.Windows.Forms.Label();
             this.ofd_Thumbnail = new System.Windows.Forms.OpenFileDialog();
+            this.bRelaciones = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbThumbnail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -257,11 +258,23 @@
             // 
             this.ofd_Thumbnail.FileName = "thumbnail";
             // 
+            // bRelaciones
+            // 
+            this.bRelaciones.Location = new System.Drawing.Point(565, 13);
+            this.bRelaciones.Margin = new System.Windows.Forms.Padding(2);
+            this.bRelaciones.Name = "bRelaciones";
+            this.bRelaciones.Size = new System.Drawing.Size(112, 47);
+            this.bRelaciones.TabIndex = 67;
+            this.bRelaciones.Text = "Relaciones";
+            this.bRelaciones.UseVisualStyleBackColor = true;
+            this.bRelaciones.Click += new System.EventHandler(this.bRelaciones_Click);
+            // 
             // ModificarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1012, 514);
+            this.Controls.Add(this.bRelaciones);
             this.Controls.Add(this.bThumbnail);
             this.Controls.Add(this.pbThumbnail);
             this.Controls.Add(this.bAtributos);
@@ -313,5 +326,6 @@
         private System.Windows.Forms.Label lNombre;
         private System.Windows.Forms.Label lSku;
         private System.Windows.Forms.OpenFileDialog ofd_Thumbnail;
+        private System.Windows.Forms.Button bRelaciones;
     }
 }

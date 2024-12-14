@@ -34,6 +34,7 @@
             this.bCategorias = new System.Windows.Forms.Button();
             this.bProductos = new System.Windows.Forms.Button();
             this.bDashboard = new System.Windows.Forms.Button();
+            this.bRelaciones = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,11 +104,23 @@
             this.bDashboard.UseVisualStyleBackColor = true;
             this.bDashboard.Click += new System.EventHandler(this.bDashboard_Click);
             // 
+            // bRelaciones
+            // 
+            this.bRelaciones.Location = new System.Drawing.Point(679, 44);
+            this.bRelaciones.Margin = new System.Windows.Forms.Padding(2);
+            this.bRelaciones.Name = "bRelaciones";
+            this.bRelaciones.Size = new System.Drawing.Size(112, 47);
+            this.bRelaciones.TabIndex = 49;
+            this.bRelaciones.Text = "Relaciones";
+            this.bRelaciones.UseVisualStyleBackColor = true;
+            this.bRelaciones.Click += new System.EventHandler(this.bRelaciones_Click);
+            // 
             // ListarCategoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1044, 514);
+            this.Controls.Add(this.bRelaciones);
             this.Controls.Add(this.bCrearProducto);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.bAtributos);
@@ -130,5 +143,6 @@
         private System.Windows.Forms.Button bCategorias;
         private System.Windows.Forms.Button bProductos;
         private System.Windows.Forms.Button bDashboard;
+        private System.Windows.Forms.Button bRelaciones;
     }
 }

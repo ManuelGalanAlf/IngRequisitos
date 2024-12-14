@@ -27,8 +27,7 @@ namespace PIM
         }
 
         private void bDashboard_Click(object sender, EventArgs e)
-        {
-                    
+        {        
             PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
             pantallaPrincipal.Show();
             this.Hide();
@@ -93,6 +92,13 @@ namespace PIM
         {
             ListarCategoria listarCategoria = new ListarCategoria();
             listarCategoria.Show();
+            this.Hide();
+        }
+
+        private void bRelaciones_Click(object sender, EventArgs e)
+        {
+            ListarRelacion listarRelacion = new ListarRelacion();
+            listarRelacion.Show();
             this.Hide();
         }
 

@@ -155,5 +155,14 @@ namespace PIM
         {
 
         }
+
+        private void bRelaciones_Click(object sender, EventArgs e)
+        {
+            ListarRelacion listarRelacion = new ListarRelacion();
+            listarRelacion.Show();
+            this.Hide();
+        }
+
+
     }
 }

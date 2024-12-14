@@ -38,6 +38,7 @@
             this.Tipo = new System.Windows.Forms.Label();
             this.tbNombre = new System.Windows.Forms.TextBox();
             this.lSku = new System.Windows.Forms.Label();
+            this.bRelaciones = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bCancelar
@@ -150,11 +151,23 @@
             this.lSku.TabIndex = 33;
             this.lSku.Text = "Nombre";
             // 
+            // bRelaciones
+            // 
+            this.bRelaciones.Location = new System.Drawing.Point(567, 30);
+            this.bRelaciones.Margin = new System.Windows.Forms.Padding(2);
+            this.bRelaciones.Name = "bRelaciones";
+            this.bRelaciones.Size = new System.Drawing.Size(112, 47);
+            this.bRelaciones.TabIndex = 49;
+            this.bRelaciones.Text = "Relaciones";
+            this.bRelaciones.UseVisualStyleBackColor = true;
+            this.bRelaciones.Click += new System.EventHandler(this.bRelaciones_Click);
+            // 
             // ModificarAtributo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1044, 514);
+            this.Controls.Add(this.bRelaciones);
             this.Controls.Add(this.bCancelar);
             this.Controls.Add(this.bConfirmar);
             this.Controls.Add(this.cbTipoAtributo);
@@ -185,5 +198,6 @@
         private System.Windows.Forms.Label Tipo;
         private System.Windows.Forms.TextBox tbNombre;
         private System.Windows.Forms.Label lSku;
+        private System.Windows.Forms.Button bRelaciones;
     }
 }

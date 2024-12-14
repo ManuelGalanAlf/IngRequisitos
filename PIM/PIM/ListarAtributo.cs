@@ -89,42 +89,6 @@ namespace PIM
             AgregarColumnasPersonalizadas();
         }
 
-        private void bCrearAtributo_Click(object sender, EventArgs e)
-        {
-            CrearAtributo crearAtributo = new CrearAtributo();
-            crearAtributo.Show();
-            this.Hide();
-        }
-
-        private void bDashboard_Click(object sender, EventArgs e) {
-            PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
-            pantallaPrincipal.Show();
-            this.Hide();
-        }
-        
-
-
-        private void bCategorias_Click(object sender, EventArgs e)
-        {
-            ListarCategoria listarCategoria = new ListarCategoria();
-            listarCategoria.Show();
-            this.Hide();              
-        }
-
-        private void bAtributos_Click(object sender, EventArgs e)
-        {
-            ListarAtributo listarAtributo = new ListarAtributo();
-            listarAtributo.Show();
-            this.Hide();
-        }
-
-        private void bProductos_Click(object sender, EventArgs e)
-        {
-            ListarProducto listarProducto = new ListarProducto();
-            listarProducto.Show();
-            this.Hide();
-        }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Verificar que se hizo clic en una columna de botón
@@ -166,6 +130,52 @@ namespace PIM
                 }
             }
         }
+
+        private void bCrearAtributo_Click(object sender, EventArgs e)
+        {
+            CrearAtributo crearAtributo = new CrearAtributo();
+            crearAtributo.Show();
+            this.Hide();
+        }
+
+        private void bDashboard_Click(object sender, EventArgs e)
+        {
+            PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
+            pantallaPrincipal.Show();
+            this.Hide();
+        }
+
+
+
+        private void bCategorias_Click(object sender, EventArgs e)
+        {
+            ListarCategoria listarCategoria = new ListarCategoria();
+            listarCategoria.Show();
+            this.Hide();
+        }
+
+        private void bAtributos_Click(object sender, EventArgs e)
+        {
+            ListarAtributo listarAtributo = new ListarAtributo();
+            listarAtributo.Show();
+            this.Hide();
+        }
+
+        private void bProductos_Click(object sender, EventArgs e)
+        {
+            ListarProducto listarProducto = new ListarProducto();
+            listarProducto.Show();
+            this.Hide();
+        }
+
+        private void bRelaciones_Click(object sender, EventArgs e)
+        {
+            ListarRelacion listarRelacion = new ListarRelacion();
+            listarRelacion.Show();
+            this.Hide();
+        }
+
+
 
        
 

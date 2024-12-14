@@ -87,13 +87,27 @@ namespace PIM
 
             ListarCategoria listarCategoria = new ListarCategoria();
             listarCategoria.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void bCancelar_Click(object sender, EventArgs e)
         {
             ListarCategoria listarCategoria = new ListarCategoria();
             listarCategoria.Show();
+            this.Hide();
+        }
+
+        private void bCrearRelacion_Click(object sender, EventArgs e)
+        {
+            ListarRelacion listarRelacion = new ListarRelacion();
+            listarRelacion.Show();
+            this.Hide();
+        }
+
+        private void bRelaciones_Click(object sender, EventArgs e)
+        {
+            ListarRelacion listarRelacion = new ListarRelacion();
+            listarRelacion.Show();
             this.Hide();
         }
 

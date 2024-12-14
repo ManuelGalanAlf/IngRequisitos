@@ -16,8 +16,10 @@ namespace PIM
     {
         public Producto()
         {
-            this.ValorAtributo = new HashSet<ValorAtributo>();
             this.Categoria = new HashSet<Categoria>();
+            this.Relacion = new HashSet<Relacion>();
+            this.Relacion1 = new HashSet<Relacion>();
+            this.ValorAtributo = new HashSet<ValorAtributo>();
         }
     
         public int Id { get; set; }
@@ -28,7 +30,9 @@ namespace PIM
         public Nullable<System.DateTime> FechaModificacion { get; set; }
         public byte[] Thumbnail { get; set; }
     
-        public virtual ICollection<ValorAtributo> ValorAtributo { get; set; }
         public virtual ICollection<Categoria> Categoria { get; set; }
+        public virtual ICollection<Relacion> Relacion { get; set; }
+        public virtual ICollection<Relacion> Relacion1 { get; set; }
+        public virtual ICollection<ValorAtributo> ValorAtributo { get; set; }
     }
 }

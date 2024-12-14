@@ -34,6 +34,7 @@
             this.bCategorias = new System.Windows.Forms.Button();
             this.bProductos = new System.Windows.Forms.Button();
             this.bDashboard = new System.Windows.Forms.Button();
+            this.bRelaciones = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,7 +50,7 @@
             // 
             // bAtributos
             // 
-            this.bAtributos.Location = new System.Drawing.Point(665, 48);
+            this.bAtributos.Location = new System.Drawing.Point(627, 50);
             this.bAtributos.Margin = new System.Windows.Forms.Padding(2);
             this.bAtributos.Name = "bAtributos";
             this.bAtributos.Size = new System.Drawing.Size(112, 47);
@@ -60,7 +61,7 @@
             // 
             // bCategorias
             // 
-            this.bCategorias.Location = new System.Drawing.Point(535, 48);
+            this.bCategorias.Location = new System.Drawing.Point(497, 50);
             this.bCategorias.Margin = new System.Windows.Forms.Padding(2);
             this.bCategorias.Name = "bCategorias";
             this.bCategorias.Size = new System.Drawing.Size(112, 47);
@@ -71,7 +72,7 @@
             // 
             // bProductos
             // 
-            this.bProductos.Location = new System.Drawing.Point(405, 48);
+            this.bProductos.Location = new System.Drawing.Point(367, 50);
             this.bProductos.Margin = new System.Windows.Forms.Padding(2);
             this.bProductos.Name = "bProductos";
             this.bProductos.Size = new System.Drawing.Size(112, 47);
@@ -82,7 +83,7 @@
             // 
             // bDashboard
             // 
-            this.bDashboard.Location = new System.Drawing.Point(283, 48);
+            this.bDashboard.Location = new System.Drawing.Point(245, 50);
             this.bDashboard.Margin = new System.Windows.Forms.Padding(2);
             this.bDashboard.Name = "bDashboard";
             this.bDashboard.Size = new System.Drawing.Size(112, 47);
@@ -91,11 +92,23 @@
             this.bDashboard.UseVisualStyleBackColor = true;
             this.bDashboard.Click += new System.EventHandler(this.bDashboard_Click);
             // 
+            // bRelaciones
+            // 
+            this.bRelaciones.Location = new System.Drawing.Point(764, 50);
+            this.bRelaciones.Margin = new System.Windows.Forms.Padding(2);
+            this.bRelaciones.Name = "bRelaciones";
+            this.bRelaciones.Size = new System.Drawing.Size(112, 47);
+            this.bRelaciones.TabIndex = 49;
+            this.bRelaciones.Text = "Relaciones";
+            this.bRelaciones.UseVisualStyleBackColor = true;
+            this.bRelaciones.Click += new System.EventHandler(this.bRelaciones_Click);
+            // 
             // PantallaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1044, 514);
+            this.Controls.Add(this.bRelaciones);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.bAtributos);
             this.Controls.Add(this.bCategorias);
@@ -116,6 +129,7 @@
         private System.Windows.Forms.Button bCategorias;
         private System.Windows.Forms.Button bProductos;
         private System.Windows.Forms.Button bDashboard;
+        private System.Windows.Forms.Button bRelaciones;
     }
 }
 

@@ -50,5 +50,18 @@ namespace PIM
             this.Hide();
         }
 
+        private void bCrearRelacion_Click(object sender, EventArgs e)
+        {
+            ListarRelacion listarRelacion = new ListarRelacion();
+            listarRelacion.Show();
+            this.Hide();
+        }
+
+        private void bRelaciones_Click(object sender, EventArgs e)
+        {
+            ListarRelacion listarRelacion = new ListarRelacion();
+            listarRelacion.Show();
+            this.Hide();
+        }
     }
 }

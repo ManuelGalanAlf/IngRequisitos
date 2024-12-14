@@ -238,10 +238,6 @@ namespace PIM
         }
 
 
-
-
-
-
         private void bCancelar_Click(object sender, EventArgs e)
         {
             ListarProducto listarProducto = new ListarProducto();
@@ -276,5 +272,14 @@ namespace PIM
             listarAtributo.Show();
             this.Hide();
         }
+
+        private void bRelaciones_Click(object sender, EventArgs e)
+        {
+            ListarRelacion listarRelacion = new ListarRelacion();
+            listarRelacion.Show();
+            this.Hide();
+        }
+
+
     }
 }

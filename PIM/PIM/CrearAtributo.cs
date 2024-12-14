@@ -97,13 +97,22 @@ namespace PIM
                 // Opcional: Navegar a la pantalla que lista los atributos
                 ListarAtributo listarAtributo = new ListarAtributo();
                 listarAtributo.Show();
-                this.Hide();
+                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrió un error al guardar el atributo: " + ex.Message);
             }
         }
+
+        private void bRelaciones_Click(object sender, EventArgs e)
+        {
+            ListarRelacion listarRelacion = new ListarRelacion();
+            listarRelacion.Show();
+            this.Hide();
+        }
+
+
 
 
 

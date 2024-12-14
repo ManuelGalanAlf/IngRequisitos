@@ -113,7 +113,7 @@ namespace PIM
                     if (!row.IsNewRow)
                     {
                         var valorCelda = row.Cells["Valor"].Value;
-                        if (valorCelda != null && valorCelda.ToString() != "")
+                        if (valorCelda != "")
                         {
                             ValorAtributo nuevoValorAtributo = new ValorAtributo
                             {
@@ -177,6 +177,48 @@ namespace PIM
                 // Ajustar la imagen al tamaño del PictureBox
                 pbThumbnail.SizeMode = PictureBoxSizeMode.StretchImage;  // Establecer el ajuste automático de la imagen
             }
+        }
+
+        private void bDashboard_Click(object sender, EventArgs e)
+        {
+            PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
+            pantallaPrincipal.Show();
+            this.Hide();
+        }
+
+        private void bProductos_Click(object sender, EventArgs e)
+        {
+            ListarProducto listarProductos = new ListarProducto();
+            listarProductos.Show();
+            this.Hide();
+        }
+
+        private void bCategorias_Click(object sender, EventArgs e)
+        {
+            ListarCategoria listarCategoria = new ListarCategoria();
+            listarCategoria.Show();
+            this.Hide();
+        }
+
+        private void bAtributos_Click(object sender, EventArgs e)
+        {
+            ListarAtributo listarAtributo = new ListarAtributo();
+            listarAtributo.Show();
+            this.Hide();
+        }
+
+        private void bCrearRelacion_Click(object sender, EventArgs e)
+        {
+            ListarRelacion listarRelacion = new ListarRelacion();
+            listarRelacion.Show();
+            this.Hide();
+        }
+
+        private void bRelaciones_Click(object sender, EventArgs e)
+        {
+            ListarRelacion listarRelacion = new ListarRelacion();
+            listarRelacion.Show();
+            this.Hide();
         }
     }
 }

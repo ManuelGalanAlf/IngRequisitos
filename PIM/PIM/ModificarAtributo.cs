@@ -99,19 +99,25 @@ namespace PIM
                 // Actualizar el nombre del atributo
                 atributoSeleccionado.Nombre = nuevoNombre;
 
-
                 bd.SaveChanges();
 
                 MessageBox.Show("Atributo actualizado exitosamente.");
 
                 ListarAtributo listarAtributo = new ListarAtributo();
                 listarAtributo.Show();
-                this.Hide();
+                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrió un error al actualizar el atributo: " + ex.Message);
             }
+        }
+
+        private void bRelaciones_Click(object sender, EventArgs e)
+        {
+            ListarRelacion listarRelacion = new ListarRelacion();
+            listarRelacion.Show();
+            this.Hide();
         }
     }
 }

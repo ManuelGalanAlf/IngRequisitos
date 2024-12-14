@@ -130,7 +130,14 @@ namespace PIM
 
                     if (confirmacion == DialogResult.Yes)
                     {
-                        // Restar al atributo relacionado
+                        // Eliminar registros relacionados en la tabla Relacion
+                        var relaciones = BD.Relacion.Where(r => r.Producto1 == sku).ToList();
+                        foreach (var relacion in relaciones)
+                        {
+                            BD.Relacion.Remove(relacion);
+                        }
+
+                        // Actualizar atributos relacionados
                         var valorAtributos = BD.ValorAtributo.Where(va => va.ProductoId == producto.Sku).ToList();
                         foreach (var valorAtributo in valorAtributos)
                         {
@@ -141,14 +148,14 @@ namespace PIM
                             }
                         }
 
-                        // Restar a la categoría relacionada
+                        // Actualizar categorías relacionadas
                         var categorias = BD.Categoria.Where(c => c.Producto.Any(p => p.Sku == producto.Sku)).ToList();
                         foreach (var categoria in categorias)
                         {
                             categoria.NumeroProductos--;
                         }
 
-                        // Eliminar el producto de la base de datos
+                        // Eliminar el producto
                         BD.Producto.Remove(producto);
                         BD.SaveChanges();
 
@@ -162,6 +169,7 @@ namespace PIM
                 }
             }
         }
+
 
         private void CargarProductos()
         {

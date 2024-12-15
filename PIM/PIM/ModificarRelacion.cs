@@ -207,7 +207,7 @@ namespace PIM
             this.Hide();
         }
 
-        private void bVovler_Click(object sender, EventArgs e)
+        private void bVolver_Click(object sender, EventArgs e)
         {
             ListarRelacion listarRelacion = new ListarRelacion();
             listarRelacion.Show();

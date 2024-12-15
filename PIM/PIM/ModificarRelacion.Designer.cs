@@ -41,7 +41,7 @@
             this.lbProducto2 = new System.Windows.Forms.ListBox();
             this.lbProducto1 = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.bVovler = new System.Windows.Forms.Button();
+            this.bVolver = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -181,25 +181,25 @@
             this.label3.TabIndex = 69;
             this.label3.Text = "Productos ya relacionados";
             // 
-            // bVovler
+            // bVolver
             // 
-            this.bVovler.BackColor = System.Drawing.Color.Red;
-            this.bVovler.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bVovler.Location = new System.Drawing.Point(877, 431);
-            this.bVovler.Margin = new System.Windows.Forms.Padding(2);
-            this.bVovler.Name = "bVovler";
-            this.bVovler.Size = new System.Drawing.Size(112, 47);
-            this.bVovler.TabIndex = 70;
-            this.bVovler.Text = "Volver";
-            this.bVovler.UseVisualStyleBackColor = false;
-            this.bVovler.Click += new System.EventHandler(this.bVovler_Click);
+            this.bVolver.BackColor = System.Drawing.Color.Red;
+            this.bVolver.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bVolver.Location = new System.Drawing.Point(877, 431);
+            this.bVolver.Margin = new System.Windows.Forms.Padding(2);
+            this.bVolver.Name = "bVolver";
+            this.bVolver.Size = new System.Drawing.Size(112, 47);
+            this.bVolver.TabIndex = 71;
+            this.bVolver.Text = "Volver";
+            this.bVolver.UseVisualStyleBackColor = false;
+            this.bVolver.Click += new System.EventHandler(this.bVolver_Click);
             // 
             // ModificarRelacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1044, 514);
-            this.Controls.Add(this.bVovler);
+            this.Controls.Add(this.bVolver);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.bAdd);
             this.Controls.Add(this.label1);
@@ -237,6 +237,6 @@
         private System.Windows.Forms.ListBox lbProducto2;
         private System.Windows.Forms.ListBox lbProducto1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button bVovler;
+        private System.Windows.Forms.Button bVolver;
     }
 }

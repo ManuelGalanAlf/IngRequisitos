@@ -68,7 +68,7 @@ namespace PIM
                 // Verificar si el nombre no está vacío
                 if (string.IsNullOrEmpty(nuevoNombre))
                 {
-                    MessageBox.Show("Por favor ingrese un nombre para la categoria.");
+                    MessageBox.Show("Please enter a name for the category.");
                     return;
                 }
 
@@ -77,14 +77,14 @@ namespace PIM
 
                 bd.SaveChanges();
 
-                MessageBox.Show("Categoria actualizada exitosamente.");
+                MessageBox.Show("Category updated successfully.");
                 ListarCategoria listarCategoria = new ListarCategoria();
                 listarCategoria.Show();
                 this.Hide();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrió un error al actualizar la categoria: " + ex.Message);
+                MessageBox.Show("An error occurred while updating the category:" + ex.Message);
             }
         }
 
@@ -99,6 +99,13 @@ namespace PIM
         {
             ListarRelacion listarRelacion = new ListarRelacion();
             listarRelacion.Show();
+            this.Hide();
+        }
+
+        private void bCuenta_Click(object sender, EventArgs e)
+        {
+            MostrarInformacionCuenta m = new MostrarInformacionCuenta();
+            m.Show();
             this.Hide();
         }
 

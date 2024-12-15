@@ -63,5 +63,12 @@ namespace PIM
             listarRelacion.Show();
             this.Hide();
         }
+
+        private void bCuenta_Click(object sender, EventArgs e)
+        {
+            MostrarInformacionCuenta m = new MostrarInformacionCuenta();
+            m.Show();
+            this.Hide();
+        }
     }
 }

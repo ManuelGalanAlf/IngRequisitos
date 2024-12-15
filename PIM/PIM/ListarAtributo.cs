@@ -35,8 +35,8 @@ namespace PIM
             // Obtener los atributos desde la base de datos
             var atributos = bd.Atributo.Select(a => new
             {
-                Nombre = a.Nombre, // Nombre del atributo
-                Tipo = a.Tipo      // Tipo del atributo
+                Name = a.Nombre, // Nombre del atributo
+                Type = a.Tipo      // Tipo del atributo
             }).ToList();
 
             // Establecer la fuente de datos del DataGridView
@@ -46,25 +46,25 @@ namespace PIM
         private void AgregarColumnasPersonalizadas()
         {
             // Verificar si ya existen las columnas "Editar" y "Eliminar"
-            if (!dataGridView1.Columns.Contains("Editar"))
+            if (!dataGridView1.Columns.Contains("Edit"))
             {
                 DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn
                 {
-                    Name = "Editar",
-                    HeaderText = "Editar",
-                    Text = "Editar",
+                    Name = "Edit",
+                    HeaderText = "Edit",
+                    Text = "Edit",
                     UseColumnTextForButtonValue = true // Mostrar texto en el botón
                 };
                 dataGridView1.Columns.Add(editButtonColumn);
             }
 
-            if (!dataGridView1.Columns.Contains("Eliminar"))
+            if (!dataGridView1.Columns.Contains("Delete"))
             {
                 DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn
                 {
-                    Name = "Eliminar",
-                    HeaderText = "Eliminar",
-                    Text = "Eliminar",
+                    Name = "Delete",
+                    HeaderText = "Delete",
+                    Text = "Delete",
                     UseColumnTextForButtonValue = true // Mostrar texto en el botón
                 };
                 dataGridView1.Columns.Add(deleteButtonColumn);
@@ -74,7 +74,7 @@ namespace PIM
         private void RecargarDatos()
         {
             // Remover las columnas personalizadas para evitar duplicados
-            foreach (var columnName in new[] { "Editar", "Eliminar" })
+            foreach (var columnName in new[] { "Edit", "Delete" })
             {
                 if (dataGridView1.Columns.Contains(columnName))
                 {
@@ -92,13 +92,13 @@ namespace PIM
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Verificar que se hizo clic en una columna de botón
-            if (e.RowIndex >= 0 && (e.ColumnIndex == dataGridView1.Columns["Editar"].Index || e.ColumnIndex == dataGridView1.Columns["Eliminar"].Index))
+            if (e.RowIndex >= 0 && (e.ColumnIndex == dataGridView1.Columns["Edit"].Index || e.ColumnIndex == dataGridView1.Columns["Delete"].Index))
             {
                 // Obtener el nombre del atributo de la fila seleccionada
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-                string atributoNombre = row.Cells["Nombre"].Value.ToString(); // Suponiendo que la columna "Nombre" existe
+                string atributoNombre = row.Cells["Name"].Value.ToString(); // Suponiendo que la columna "Nombre" existe
 
-                if (e.ColumnIndex == dataGridView1.Columns["Editar"].Index)
+                if (e.ColumnIndex == dataGridView1.Columns["Edit"].Index)
                 {
                     // Acción para el botón "Editar"
                     var atributo = bd.Atributo.FirstOrDefault(a => a.Nombre == atributoNombre);
@@ -109,12 +109,12 @@ namespace PIM
                         this.Close();
                     }
                 }
-                else if (e.ColumnIndex == dataGridView1.Columns["Eliminar"].Index)
+                else if (e.ColumnIndex == dataGridView1.Columns["Delete"].Index)
                 {
                     // Acción para el botón "Eliminar"
                     DialogResult result = MessageBox.Show(
-                        "¿Estás seguro de que deseas eliminar el atributo con nombre: " + atributoNombre + "?",
-                        "Confirmar eliminación",
+                        "Are you sure you want to delete the attribute with name: " + atributoNombre + "?",
+                        "Confirm delete",
                         MessageBoxButtons.YesNo);
 
                     if (result == DialogResult.Yes)
@@ -133,6 +133,7 @@ namespace PIM
 
         private void bCrearAtributo_Click(object sender, EventArgs e)
         {
+
             CrearAtributo crearAtributo = new CrearAtributo();
             crearAtributo.Show();
             this.Hide();
@@ -172,6 +173,13 @@ namespace PIM
         {
             ListarRelacion listarRelacion = new ListarRelacion();
             listarRelacion.Show();
+            this.Hide();
+        }
+
+        private void bCuenta_Click(object sender, EventArgs e)
+        {
+            MostrarInformacionCuenta m = new MostrarInformacionCuenta();
+            m.Show();
             this.Hide();
         }
 

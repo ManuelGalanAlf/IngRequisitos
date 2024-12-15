@@ -24,7 +24,7 @@ namespace PIM
         {
             if (producto == null)
             {
-                MessageBox.Show("Producto no válido.");
+                MessageBox.Show("Invalid product");
                 return;
             }
 
@@ -57,7 +57,7 @@ namespace PIM
                 }
                 else
                 {
-                    lbCategorias.Items.Add("No tiene categorías asociadas.");
+                    lbCategorias.Items.Add("It has no associated categories.");
                 }
 
                 // Cargar y mostrar el Thumbnail si está presente
@@ -81,8 +81,8 @@ namespace PIM
 
             // Confirmación antes de proceder a eliminar
             DialogResult confirmacion = MessageBox.Show(
-                "¿Está seguro de que desea eliminar este producto?",
-                "Confirmar eliminación",
+                "Are you sure you want to delete this product?",
+                "Confirm delete",
                 MessageBoxButtons.YesNo
             );
 
@@ -116,12 +116,12 @@ namespace PIM
                         BD.Producto.Remove(productoEliminar);
                         BD.SaveChanges();
 
-                        MessageBox.Show("Producto eliminado correctamente.");
+                        MessageBox.Show("Product removed successfully.");
                         this.Close();  // Cerrar el formulario actual después de eliminar el producto
                     }
                     else
                     {
-                        MessageBox.Show("Producto no encontrado en la base de datos.");
+                        MessageBox.Show("Product not found in the database.");
                     }
                 }
             }
@@ -166,6 +166,13 @@ namespace PIM
         {
             ListarRelacion listarRelacion = new ListarRelacion();
             listarRelacion.Show();
+            this.Hide();
+        }
+
+        private void bCuenta_Click(object sender, EventArgs e)
+        {
+            MostrarInformacionCuenta m = new MostrarInformacionCuenta();
+            m.Show();
             this.Hide();
         }
     }

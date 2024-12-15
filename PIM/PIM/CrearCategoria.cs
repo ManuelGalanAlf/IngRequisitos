@@ -54,12 +54,17 @@ namespace PIM
 
         private void bConfirmar_Click(object sender, EventArgs e)
         {
+            if (bd.Categoria.Count() >= 1000)
+            {
+                MessageBox.Show("Exceeded categories limit (1000)");
+                return;
+            }
             string nuevoNombre = tbNombre.Text;
 
             // Verificar si el nombre no está vacío
             if (string.IsNullOrEmpty(nuevoNombre))
             {
-                MessageBox.Show("El nombre no puede estar vacío.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Name cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -67,7 +72,7 @@ namespace PIM
             var categoriaExistente = bd.Categoria.FirstOrDefault(c => c.Nombre == nuevoNombre);
             if (categoriaExistente != null)
             {
-                MessageBox.Show("Ya existe una categoría con este nombre. Elija otro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("A category with this name already exists. Please choose another one.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -83,7 +88,7 @@ namespace PIM
             bd.SaveChanges();
 
             // Mostrar mensaje de confirmación
-            MessageBox.Show("Categoría creada correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Category created successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             ListarCategoria listarCategoria = new ListarCategoria();
             listarCategoria.Show();
@@ -108,6 +113,13 @@ namespace PIM
         {
             ListarRelacion listarRelacion = new ListarRelacion();
             listarRelacion.Show();
+            this.Hide();
+        }
+
+        private void bCuenta_Click(object sender, EventArgs e)
+        {
+            MostrarInformacionCuenta m = new MostrarInformacionCuenta();
+            m.Show();
             this.Hide();
         }
 

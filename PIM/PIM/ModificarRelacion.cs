@@ -48,7 +48,7 @@ namespace PIM
                 string columnName = dataGridView1.Columns[e.ColumnIndex].Name;
 
                 // Verificar si el botón pulsado es "Borrar"
-                if (columnName == "Borrar")
+                if (columnName == "Delete")
                 {
                     var selectedRow = dataGridView1.Rows[e.RowIndex];
                     int idRelacion = Convert.ToInt32(selectedRow.Cells["Id"].Value);
@@ -66,8 +66,8 @@ namespace PIM
                 if (relacion != null)
                 {
                     DialogResult confirmacion = MessageBox.Show(
-                        string.Format("¿Está seguro de que desea borrar la relación '{0}'?", relacion.NombreRelacion),
-                        "Confirmar",
+                        string.Format("Are you sure you want to delete the relationship '{0}'?", relacion.NombreRelacion),
+                        "Confirm",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Warning);
 
@@ -75,13 +75,13 @@ namespace PIM
                     {
                         BD.Relacion.Remove(relacion);
                         BD.SaveChanges();
-                        MessageBox.Show("Relación borrada correctamente.");
+                        MessageBox.Show("Relationship deleted successfully.");
                         CargarRelaciones(); // Actualizar el DataGridView
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Relación no encontrada.");
+                    MessageBox.Show("Relationship not found.");
                 }
             }
         }
@@ -92,7 +92,7 @@ namespace PIM
             {
                 if (BD.Relacion == null)
                 {
-                    MessageBox.Show("No se pudo acceder a las relaciones en la base de datos.");
+                    MessageBox.Show("The relationships in the database could not be accessed.");
                     return;
                 }
 
@@ -111,7 +111,7 @@ namespace PIM
 
                     if (!relaciones.Any())
                     {
-                        MessageBox.Show("No se encontraron relaciones con ese nombre.");
+                        MessageBox.Show("No relationships were found with that name.");
                         return;
                     }
 
@@ -119,12 +119,12 @@ namespace PIM
                     dataGridView1.DataSource = listaRelaciones;
                     dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                    if (!dataGridView1.Columns.Contains("Borrar"))
+                    if (!dataGridView1.Columns.Contains("Delete"))
                     {
                         DataGridViewButtonColumn btnBorrar = new DataGridViewButtonColumn
                         {
-                            Name = "Borrar",
-                            Text = "Borrar",
+                            Name = "Delete",
+                            Text = "Delete",
                             UseColumnTextForButtonValue = true
                         };
                         dataGridView1.Columns.Add(btnBorrar);
@@ -138,7 +138,7 @@ namespace PIM
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al cargar las relaciones: " + ex.Message);
+                    MessageBox.Show("Error loading relations: " + ex.Message);
                 }
             }
         }
@@ -167,7 +167,7 @@ namespace PIM
                 BD.Relacion.Add(nuevaRelacion);
                 BD.SaveChanges();
 
-                MessageBox.Show("Relación añadida correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Relation added successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarRelaciones(); // Actualizar el DataGridView con la nueva relación
             }
         }
@@ -211,6 +211,13 @@ namespace PIM
         {
             ListarRelacion listarRelacion = new ListarRelacion();
             listarRelacion.Show();
+            this.Hide();
+        }
+
+        private void bCuenta_Click(object sender, EventArgs e)
+        {
+            MostrarInformacionCuenta m = new MostrarInformacionCuenta();
+            m.Show();
             this.Hide();
         }
     }

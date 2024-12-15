@@ -70,11 +70,19 @@ namespace PIM
                 tbNombre.ReadOnly = true;
 
                 // Mostrar mensaje de éxito
-                MessageBox.Show("Relación añadida correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Relationship added successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void bConfirmar_Click(object sender, EventArgs e)
         {
+            if (BD.Relacion
+                         .Select(r => r.NombreRelacion)
+                         .Distinct()
+                         .Count() >= 10)
+            {
+                MessageBox.Show("Exceeded products limit (100000)");
+                return;
+            }
             bool todasRelacionesCreadas = true;  // Variable para rastrear si alguna relación no se crea
 
             foreach (var relacion in relaciones)
@@ -87,7 +95,7 @@ namespace PIM
 
                 if (existeRelacion)
                 {
-                    MessageBox.Show("La relación ya existe.",
+                    MessageBox.Show("Relation already exists.",
                                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     todasRelacionesCreadas = false;  // Alguna relación no se creó
                     continue;  // Si ya existe, pasar a la siguiente relación
@@ -103,13 +111,13 @@ namespace PIM
             // Mostrar mensaje solo si todas las relaciones fueron creadas exitosamente
             if (todasRelacionesCreadas)
             {
-                MessageBox.Show("Las relaciones han sido creadas con éxito.",
+                MessageBox.Show("Relation created succesfully.",
                                 "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Algunas relaciones no pudieron ser creadas debido a duplicados.",
-                                "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Some relationships could not be created due to duplicates.",
+                                "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             ListarRelacion listarRelacion = new ListarRelacion();
@@ -173,6 +181,13 @@ namespace PIM
         {
             ListarRelacion listarRelacion = new ListarRelacion();
             listarRelacion.Show();
+            this.Hide();
+        }
+
+        private void bCuenta_Click(object sender, EventArgs e)
+        {
+            MostrarInformacionCuenta m = new MostrarInformacionCuenta();
+            m.Show();
             this.Hide();
         }
 

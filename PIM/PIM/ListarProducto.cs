@@ -26,36 +26,36 @@ namespace PIM
         private void AgregarBotonesDataGridView()
         {
             // Agregar la columna "Editar" si no existe
-            if (!dataGridView1.Columns.Contains("Editar"))
+            if (!dataGridView1.Columns.Contains("Edit"))
             {
                 DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn
                 {
-                    Name = "Editar",
-                    Text = "Editar",
+                    Name = "Edit",
+                    Text = "Edit",
                     UseColumnTextForButtonValue = true
                 };
                 dataGridView1.Columns.Add(btnEditar);
             }
 
             // Agregar la columna "Borrar" si no existe
-            if (!dataGridView1.Columns.Contains("Borrar"))
+            if (!dataGridView1.Columns.Contains("Delete"))
             {
                 DataGridViewButtonColumn btnBorrar = new DataGridViewButtonColumn
                 {
-                    Name = "Borrar",
-                    Text = "Borrar",
+                    Name = "Delete",
+                    Text = "Delete",
                     UseColumnTextForButtonValue = true
                 };
                 dataGridView1.Columns.Add(btnBorrar);
             }
 
             // Agregar la columna "Mostrar" si no existe
-            if (!dataGridView1.Columns.Contains("Mostrar"))
+            if (!dataGridView1.Columns.Contains("Show"))
             {
                 DataGridViewButtonColumn btnMostrar = new DataGridViewButtonColumn
                 {
-                    Name = "Mostrar",
-                    Text = "Mostrar",
+                    Name = "Show",
+                    Text = "Show",
                     UseColumnTextForButtonValue = true
                 };
                 dataGridView1.Columns.Add(btnMostrar);
@@ -69,7 +69,7 @@ namespace PIM
             {
                 string columnName = dataGridView1.Columns[e.ColumnIndex].Name;
 
-                if (columnName == "Editar" || columnName == "Borrar" || columnName == "Mostrar")
+                if (columnName == "Edit" || columnName == "Delete" || columnName == "Show")
                 {
                     var selectedRow = dataGridView1.Rows[e.RowIndex];
 
@@ -78,15 +78,15 @@ namespace PIM
                     {
                         int sku = Convert.ToInt32(selectedRow.Cells["SKU"].Value);
 
-                        if (columnName == "Editar")
+                        if (columnName == "Edit")
                         {
                             EditarProducto(sku);
                         }
-                        else if (columnName == "Borrar")
+                        else if (columnName == "Delete")
                         {
                             BorrarProducto(sku);
                         }
-                        else if (columnName == "Mostrar")
+                        else if (columnName == "Show")
                         {
                             MostrarProducto(sku);
                         }
@@ -110,7 +110,7 @@ namespace PIM
                 }
                 else
                 {
-                    MessageBox.Show("Producto no encontrado.");
+                    MessageBox.Show("Product not found.");
                 }
             }
         }
@@ -124,8 +124,8 @@ namespace PIM
                 if (producto != null)
                 {
                     DialogResult confirmacion = MessageBox.Show(
-                        "¿Está seguro de que desea borrar este producto?",
-                        "Confirmar",
+                        "Are you sure you want to delete this product?",
+                        "Confirm",
                         MessageBoxButtons.YesNo);
 
                     if (confirmacion == DialogResult.Yes)
@@ -159,13 +159,13 @@ namespace PIM
                         BD.Producto.Remove(producto);
                         BD.SaveChanges();
 
-                        MessageBox.Show("Producto borrado correctamente.");
+                        MessageBox.Show("Product deleted successfully.");
                         CargarProductos(); // Actualizar el DataGridView después de borrar
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Producto no encontrado.");
+                    MessageBox.Show("Product not found.");
                 }
             }
         }
@@ -180,7 +180,7 @@ namespace PIM
                                  {
                                      SKU = p.Sku,  // Renombrar la columna a "SKU"
                                      GTIN = p.Gtin,  // Renombrar la columna a "GTIN"
-                                     Nombre = p.Nombre,
+                                     Name = p.Nombre,
                                  }).ToList();
 
                 dataGridView1.DataSource = productos;
@@ -213,7 +213,7 @@ namespace PIM
                 }
                 else
                 {
-                    MessageBox.Show("Producto no encontrado.");
+                    MessageBox.Show("Product not found.");
                 }
             }
         }
@@ -250,13 +250,20 @@ namespace PIM
         {
             CrearProducto crearProducto = new CrearProducto();
             crearProducto.Show();
-            this.Hide();
+            
         }
 
         private void bRelaciones_Click(object sender, EventArgs e)
         {
             ListarRelacion listarRelacion = new ListarRelacion();
             listarRelacion.Show();
+            this.Hide();
+        }
+
+        private void bCuenta_Click(object sender, EventArgs e)
+        {
+            MostrarInformacionCuenta m = new MostrarInformacionCuenta();
+            m.Show();
             this.Hide();
         }
     }

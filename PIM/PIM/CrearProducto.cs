@@ -10,6 +10,7 @@ namespace PIM
 {
     public partial class CrearProducto : Form
     {
+        TiendaEntities1 bd = new TiendaEntities1();
         public CrearProducto()
         {
             InitializeComponent();
@@ -31,8 +32,8 @@ namespace PIM
             // Crear una tabla temporal para que los datos sean editables
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("Id", typeof(int));  // Para el Id del atributo
-            dataTable.Columns.Add("Nombre", typeof(string));
-            dataTable.Columns.Add("Valor", typeof(string));
+            dataTable.Columns.Add("Name", typeof(string));
+            dataTable.Columns.Add("Value", typeof(string));
 
             // Añadir datos a la tabla
             foreach (var item in data)
@@ -47,8 +48,8 @@ namespace PIM
             dataGridView1.Columns["Id"].Visible = false;
 
             // Permitir edición solo en la columna "Valor"
-            dataGridView1.Columns["Valor"].ReadOnly = false;
-            dataGridView1.Columns["Nombre"].ReadOnly = true; // Opcional, para evitar editar "Tipo"
+            dataGridView1.Columns["Value"].ReadOnly = false;
+            dataGridView1.Columns["Name"].ReadOnly = true; // Opcional, para evitar editar "Tipo"
             dataGridView1.AllowUserToAddRows = false;
 
             // Cargar las categorías en el CheckedListBox
@@ -60,13 +61,18 @@ namespace PIM
 
         private void bConfirmar_Click(object sender, EventArgs e)
         {
+            if (bd.Producto.Count() >= 100000)
+            {
+                MessageBox.Show("Exceeded products limit (100000)");
+                return;
+            }
             try
             {
                 TiendaEntities1 BD = new TiendaEntities1();
                 string SKU = tbSku.Text;
                 if (String.IsNullOrEmpty(SKU))
                 {
-                    MessageBox.Show("El Sku es obligatorio");
+                    MessageBox.Show("SKU is mandatory");
                     return;
                 }
                 string GTIN = tbGtin.Text;
@@ -74,14 +80,14 @@ namespace PIM
                 // Validación de GTIN para asegurarse que sea un número de exactamente 13 dígitos
                 if (String.IsNullOrEmpty(GTIN) || GTIN.Length != 13 || !GTIN.All(char.IsDigit))
                 {
-                    MessageBox.Show("El GTIN debe ser un número de 13 dígitos.");
+                    MessageBox.Show("GTIN must be a 13 digit number.");
                     return;
                 }
 
                 string NOMBRE = tbNombre.Text;
                 if (String.IsNullOrEmpty(NOMBRE))
                 {
-                    MessageBox.Show("El Nombre es obligatorio");
+                    MessageBox.Show("Name is mandatory");
                     return;
                 }
 
@@ -112,7 +118,7 @@ namespace PIM
                 {
                     if (!row.IsNewRow)
                     {
-                        var valorCelda = row.Cells["Valor"].Value;
+                        var valorCelda = row.Cells["Value"].Value;
                         if (valorCelda != null && valorCelda.ToString() != "")
                         {
                             ValorAtributo nuevoValorAtributo = new ValorAtributo
@@ -146,7 +152,7 @@ namespace PIM
 
                 BD.SaveChanges();  // Guardar los cambios de las categorías
 
-                MessageBox.Show("Producto creado con éxito");
+                MessageBox.Show("Product created successfully");
 
                 ListarProducto listarProducto = new ListarProducto();
                 listarProducto.Show();
@@ -154,7 +160,7 @@ namespace PIM
             }
             catch (DbUpdateException dbEx)
             {
-                MessageBox.Show("Error de base de datos: " + dbEx.Message);
+                MessageBox.Show("Database error " + dbEx.Message);
                 // Puedes inspeccionar más detalles con dbEx.InnerException si es necesario
             }
             catch (Exception ex)
@@ -166,6 +172,7 @@ namespace PIM
         private void bCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+
         }
 
         private void bThumbnail_Click(object sender, EventArgs e)
@@ -218,6 +225,18 @@ namespace PIM
         {
             ListarRelacion listarRelacion = new ListarRelacion();
             listarRelacion.Show();
+            this.Hide();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bCuenta_Click(object sender, EventArgs e)
+        {
+            MostrarInformacionCuenta m = new MostrarInformacionCuenta();
+            m.Show();
             this.Hide();
         }
     }

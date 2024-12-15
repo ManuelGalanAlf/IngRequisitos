@@ -28,9 +28,9 @@ namespace PIM
             // Agregar columna "Editar"
             DataGridViewButtonColumn editarBtn = new DataGridViewButtonColumn
             {
-                Name = "Editar",
-                HeaderText = "Editar",
-                Text = "Editar",
+                Name = "Edit",
+                HeaderText = "Edit",
+                Text = "Edit",
                 UseColumnTextForButtonValue = true
             };
             dataGridView1.Columns.Add(editarBtn);
@@ -38,9 +38,9 @@ namespace PIM
             // Agregar columna "Eliminar"
             DataGridViewButtonColumn eliminarBtn = new DataGridViewButtonColumn
             {
-                Name = "Eliminar",
-                HeaderText = "Eliminar",
-                Text = "Eliminar",
+                Name = "Delete",
+                HeaderText = "Delete",
+                Text = "Delete",
                 UseColumnTextForButtonValue = true
             };
             dataGridView1.Columns.Add(eliminarBtn);
@@ -52,11 +52,11 @@ namespace PIM
                 if (ev.RowIndex < 0) return;
 
                 // Obtener el ID de la categoría seleccionada
-                var categoriaNombre = dataGridView1.Rows[ev.RowIndex].Cells["Nombre"].Value.ToString();
+                var categoriaNombre = dataGridView1.Rows[ev.RowIndex].Cells["Name"].Value.ToString();
                 var categoriaSeleccionada = bd.Categoria.FirstOrDefault(c => c.Nombre == categoriaNombre);
 
                 // Acción para el botón "Editar"
-                if (dataGridView1.Columns[ev.ColumnIndex].Name == "Editar")
+                if (dataGridView1.Columns[ev.ColumnIndex].Name == "Edit")
                 {
                     // Abrir el formulario de modificación y pasar el ID como parámetro
                     ModificarCategoria formModificar = new ModificarCategoria(categoriaSeleccionada);
@@ -68,7 +68,7 @@ namespace PIM
                 }
 
                 // Acción para el botón "Eliminar"
-                if (dataGridView1.Columns[ev.ColumnIndex].Name == "Eliminar")
+                if (dataGridView1.Columns[ev.ColumnIndex].Name == "Delete")
                 {
                     // Buscar la categoría por su ID
                     if (categoriaSeleccionada != null)
@@ -78,8 +78,8 @@ namespace PIM
                         {
                             // Mostrar mensaje de confirmación si tiene productos
                             DialogResult confirm = MessageBox.Show(
-                                "Esta categoría contiene productos. ¿Está seguro de que desea eliminarla?",
-                                "Confirmar eliminación",
+                                "This category contains products. Are you sure you want to delete it?",
+                                "Confirm delete",
                                 MessageBoxButtons.YesNo,
                                 MessageBoxIcon.Warning
                             );
@@ -93,7 +93,7 @@ namespace PIM
                         // Eliminar la categoría
                         bd.Categoria.Remove(categoriaSeleccionada);
                         bd.SaveChanges();
-                        MessageBox.Show("Categoría eliminada correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Category successfully deleted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         // Recargar datos después de eliminar
                         CargarCategorias();
@@ -108,8 +108,8 @@ namespace PIM
             dataGridView1.DataSource = (from d in bd.Categoria
                                         select new
                                         {
-                                            Nombre = d.Nombre,
-                                            NúmerodeProductos = d.NumeroProductos // Conteo de productos
+                                            Name = d.Nombre,
+                                            NumberofProducts = d.NumeroProductos // Conteo de productos
                                         }).ToList();
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -160,6 +160,13 @@ namespace PIM
         {
             ListarRelacion listarRelacion = new ListarRelacion();
             listarRelacion.Show();
+            this.Hide();
+        }
+
+        private void bCuenta_Click(object sender, EventArgs e)
+        {
+            MostrarInformacionCuenta m = new MostrarInformacionCuenta();
+            m.Show();
             this.Hide();
         }
 

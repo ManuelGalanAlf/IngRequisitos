@@ -39,20 +39,20 @@ namespace PIM
                             select new
                             {
                                 Id = atributo.Id,             // Id del atributo
-                                Nombre = atributo.Nombre,     // Nombre del atributo
-                                Valor = va != null ? va.Valor : ""  // Valor si existe, de lo contrario cadena vacía
+                                Name = atributo.Nombre,     // Nombre del atributo
+                                Value = va != null ? va.Valor : ""  // Valor si existe, de lo contrario cadena vacía
                             }).ToList();
 
                 // Crear una tabla temporal para que los datos sean editables
                 DataTable dataTable = new DataTable();
                 dataTable.Columns.Add("Id", typeof(int));
-                dataTable.Columns.Add("Nombre", typeof(string));
-                dataTable.Columns.Add("Valor", typeof(string));
+                dataTable.Columns.Add("Name", typeof(string));
+                dataTable.Columns.Add("Value", typeof(string));
 
                 // Añadir los atributos a la tabla, con sus valores correspondientes
                 foreach (var item in data)
                 {
-                    dataTable.Rows.Add(item.Id, item.Nombre, item.Valor);
+                    dataTable.Rows.Add(item.Id, item.Name, item.Value);
                 }
 
                 // Asignar la tabla al DataGridView
@@ -60,8 +60,8 @@ namespace PIM
 
                 // Configurar columnas del DataGridView
                 dataGridView1.Columns["Id"].Visible = false;            // Ocultar columna "Id"
-                dataGridView1.Columns["Nombre"].ReadOnly = true;        // No permitir editar "Nombre"
-                dataGridView1.Columns["Valor"].ReadOnly = false;        // Permitir editar "Valor"
+                dataGridView1.Columns["Name"].ReadOnly = true;        // No permitir editar "Nombre"
+                dataGridView1.Columns["Value"].ReadOnly = false;        // Permitir editar "Valor"
                 dataGridView1.AllowUserToAddRows = false;
 
                 // Mostrar los valores actuales en los TextBox
@@ -105,8 +105,8 @@ namespace PIM
         {
             // Crear el OpenFileDialog
             OpenFileDialog ofd_Thumbnail = new OpenFileDialog();
-            ofd_Thumbnail.Filter = "Imagenes|*.jpg;*.jpeg;*.png;*.bmp;*.gif"; // Filtro para imágenes
-            ofd_Thumbnail.Title = "Seleccione una imagen para el thumbnail";
+            ofd_Thumbnail.Filter = "Images|*.jpg;*.jpeg;*.png;*.bmp;*.gif"; // Filtro para imágenes
+            ofd_Thumbnail.Title = "Select an image for the thumbnail";
 
             if (ofd_Thumbnail.ShowDialog() == DialogResult.OK)
             {
@@ -118,7 +118,7 @@ namespace PIM
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al cargar la imagen: " + ex.Message);
+                    MessageBox.Show("Error loading image " + ex.Message);
                 }
             }
         }
@@ -135,7 +135,7 @@ namespace PIM
 
                 if (productoParaActualizar == null)
                 {
-                    MessageBox.Show("Producto no encontrado.");
+                    MessageBox.Show("Product not found");
                     return;
                 }
 
@@ -151,7 +151,7 @@ namespace PIM
                     if (row.Cells["Id"].Value == null) continue;
 
                     int atributoId = (int)row.Cells["Id"].Value;
-                    string valor = row.Cells["Valor"].Value != null ? row.Cells["Valor"].Value.ToString() : string.Empty;
+                    string valor = row.Cells["Value"].Value != null ? row.Cells["Value"].Value.ToString() : string.Empty;
 
                     // Buscar el ValorAtributo existente para el producto y el atributo actual
                     var valorAtributoExistente = BD.ValorAtributo
@@ -224,7 +224,7 @@ namespace PIM
                     transaction.Commit();
                 }
 
-                MessageBox.Show("Producto actualizado correctamente.");
+                MessageBox.Show("Product updated successfully.");
                 this.Close();
 
                 // Abrir el formulario de listado de productos
@@ -233,7 +233,7 @@ namespace PIM
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al actualizar el producto: " + ex.Message);
+                MessageBox.Show("Error updating product:" + ex.Message);
             }
         }
 
@@ -277,6 +277,13 @@ namespace PIM
         {
             ListarRelacion listarRelacion = new ListarRelacion();
             listarRelacion.Show();
+            this.Hide();
+        }
+
+        private void bCuenta_Click(object sender, EventArgs e)
+        {
+            MostrarInformacionCuenta m = new MostrarInformacionCuenta();
+            m.Show();
             this.Hide();
         }
 

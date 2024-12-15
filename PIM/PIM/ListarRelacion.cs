@@ -31,24 +31,24 @@ namespace PIM
         private void AgregarBotonesDataGridView()
         {
             // Agregar la columna "Editar" si no existe
-            if (!dataGridView1.Columns.Contains("Editar"))
+            if (!dataGridView1.Columns.Contains("Edit"))
             {
                 DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn
                 {
-                    Name = "Editar",
-                    Text = "Editar",
+                    Name = "Edit",
+                    Text = "Edit",
                     UseColumnTextForButtonValue = true
                 };
                 dataGridView1.Columns.Add(btnEditar);
             }
 
             // Agregar la columna "Borrar" si no existe
-            if (!dataGridView1.Columns.Contains("Borrar"))
+            if (!dataGridView1.Columns.Contains("Delete"))
             {
                 DataGridViewButtonColumn btnBorrar = new DataGridViewButtonColumn
                 {
-                    Name = "Borrar",
-                    Text = "Borrar",
+                    Name = "Delete",
+                    Text = "Delete",
                     UseColumnTextForButtonValue = true
                 };
                 dataGridView1.Columns.Add(btnBorrar);
@@ -69,8 +69,8 @@ namespace PIM
 
                     // Confirmar con el usuario antes de borrar
                     DialogResult confirmacion = MessageBox.Show(
-                        string.Format("¿Está seguro de que desea borrar todas las relaciones con el nombre '{0}'?", nombreRelacion),
-                        "Confirmar",
+                        string.Format("Are you sure you want to delete all relationships with the name '{0}'?", nombreRelacion),
+                        "Confirm",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Warning);
 
@@ -85,18 +85,18 @@ namespace PIM
                             BD.Relacion.RemoveRange(relacionesAgrupadas);
                             BD.SaveChanges();
 
-                            MessageBox.Show("Relaciones borradas correctamente.");
+                            MessageBox.Show("Relationships deleted successfully.");
                             CargarRelaciones(); // Actualizar el DataGridView después de borrar
                         }
                         else
                         {
-                            MessageBox.Show("No se encontraron relaciones con ese nombre.");
+                            MessageBox.Show("No relationships were found with that name.");
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Relación no encontrada.");
+                    MessageBox.Show("Relationship not found.");
                 }
             }
         }
@@ -110,7 +110,7 @@ namespace PIM
             {
                 string columnName = dataGridView1.Columns[e.ColumnIndex].Name;
 
-                if (columnName == "Editar" || columnName == "Borrar")
+                if (columnName == "Edit" || columnName == "Delete")
                 {
                     var selectedRow = dataGridView1.Rows[e.RowIndex];
 
@@ -119,7 +119,7 @@ namespace PIM
                     {
                         int idRelacion = Convert.ToInt32(selectedRow.Cells["Id"].Value);
 
-                        if (columnName == "Editar")
+                        if (columnName == "Edit")
                         {
                             EditarRelacion(idRelacion);
                         }
@@ -148,7 +148,7 @@ namespace PIM
                 }
                 else
                 {
-                    MessageBox.Show("Relación no encontrada.");
+                    MessageBox.Show("Relationship not found.");
                 }
             }
 
@@ -161,7 +161,7 @@ namespace PIM
                 // Verifica que la colección 'Relacion' no sea null
                 if (BD.Relacion == null)
                 {
-                    MessageBox.Show("No se pudo acceder a las relaciones en la base de datos.");
+                    MessageBox.Show("The relationships in the database could not be accessed.");
                     return; // Detiene el proceso si la colección es null
                 }
 
@@ -179,7 +179,7 @@ namespace PIM
                     // Verificar si hay resultados
                     if (relaciones == null || !relaciones.Any())
                     {
-                        MessageBox.Show("No se encontraron relaciones.");
+                        MessageBox.Show("No relationships were found.");
                         return; // Si no hay relaciones, muestra un mensaje y detiene el proceso
                     }
 
@@ -194,7 +194,7 @@ namespace PIM
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al cargar las relaciones: " + ex.Message);
+                    MessageBox.Show("Error loading relations: " + ex.Message);
                 }
             }
         }
@@ -239,6 +239,13 @@ namespace PIM
         {
             ListarRelacion listarRelacion = new ListarRelacion();
             listarRelacion.Show();
+            this.Hide();
+        }
+
+        private void bCuenta_Click(object sender, EventArgs e)
+        {
+            MostrarInformacionCuenta m = new MostrarInformacionCuenta();
+            m.Show();
             this.Hide();
         }     
     }

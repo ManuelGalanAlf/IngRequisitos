@@ -69,12 +69,17 @@ namespace PIM
 
         private void bConfirmar_Click(object sender, EventArgs e)
         {
+            if (bd.Atributo.Count() >= 5) {
+                MessageBox.Show("Exceeded attribute limit (5)");
+                return;
+            }
+            
             string nombre = tbNombre.Text;
             string tipoString = cbTipoAtributo.SelectedItem.ToString();
 
             if (string.IsNullOrEmpty(nombre))
             {
-                MessageBox.Show("Introduzca un nombre para crear producto.");
+                MessageBox.Show("Enter a name to create product.");
                 return;
             }
 
@@ -92,7 +97,7 @@ namespace PIM
                 // Guardar los cambios en la base de datos
                 bd.SaveChanges();
 
-                MessageBox.Show("Atributo creado exitosamente.");
+                MessageBox.Show("Attribute created successfully.");
 
                 // Opcional: Navegar a la pantalla que lista los atributos
                 ListarAtributo listarAtributo = new ListarAtributo();
@@ -101,14 +106,27 @@ namespace PIM
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrió un error al guardar el atributo: " + ex.Message);
+                MessageBox.Show("An error occurred while saving the attribute:" + ex.Message);
             }
+            
         }
 
         private void bRelaciones_Click(object sender, EventArgs e)
         {
             ListarRelacion listarRelacion = new ListarRelacion();
             listarRelacion.Show();
+            this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bCuenta_Click(object sender, EventArgs e)
+        {
+            MostrarInformacionCuenta m = new MostrarInformacionCuenta();
+            m.Show();
             this.Hide();
         }
 

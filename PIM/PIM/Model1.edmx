@@ -22,6 +22,15 @@
           <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="NumeroProductos" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Cuenta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="FechaCreacion" Type="date" />
+          <Property Name="Imagen" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Producto">
           <Key>
             <PropertyRef Name="Id" />
@@ -153,6 +162,7 @@
         <EntityContainer Name="TiendaModelStoreContainer">
           <EntitySet Name="Atributo" EntityType="Self.Atributo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cuenta" EntityType="Self.Cuenta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductoCategoria" EntityType="Self.ProductoCategoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Relacion" EntityType="Self.Relacion" Schema="dbo" store:Type="Tables" />
@@ -197,15 +207,6 @@
           <Property Name="NumeroProductos" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ValorAtributo" Relationship="TiendaModel.FK_ValorAtributo_Atributo" FromRole="Atributo" ToRole="ValorAtributo" />
         </EntityType>
-        <EntityType Name="Categoria">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NumeroProductos" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Producto" Relationship="Self.ProductoCategoria" FromRole="Categoria" ToRole="Producto" />
-        </EntityType>
         <EntityType Name="Producto">
           <Key>
             <PropertyRef Name="Id" />
@@ -216,24 +217,15 @@
           <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Categoria" Relationship="Self.ProductoCategoria" FromRole="Producto" ToRole="Categoria" />
           <Property Name="Thumbnail" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Relacion" Relationship="TiendaModel.FK_Relacion_Producto1" FromRole="Producto" ToRole="Relacion" />
           <NavigationProperty Name="Relacion1" Relationship="TiendaModel.FK_Relacion_Producto2" FromRole="Producto" ToRole="Relacion" />
           <NavigationProperty Name="ValorAtributo" Relationship="TiendaModel.FK_ValorAtributo_Producto" FromRole="Producto" ToRole="ValorAtributo" />
+          <NavigationProperty Name="Categoria" Relationship="TiendaModel.ProductoCategoria" FromRole="Producto" ToRole="Categoria" />
           </EntityType>
-        <Association Name="ProductoCategoria">
-          <End Role="Categoria" Type="Self.Categoria" Multiplicity="*" />
-          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="TiendaEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Atributo" EntityType="Self.Atributo" />
-          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
           <EntitySet Name="Producto" EntityType="Self.Producto" />
-          <AssociationSet Name="ProductoCategoria" Association="Self.ProductoCategoria">
-            <End Role="Categoria" EntitySet="Categoria" />
-            <End Role="Producto" EntitySet="Producto" />
-          </AssociationSet>
           <EntitySet Name="sysdiagrams" EntityType="TiendaModel.sysdiagrams" />
           <EntitySet Name="Relacion" EntityType="TiendaModel.Relacion" />
           <AssociationSet Name="FK_Relacion_Producto1" Association="TiendaModel.FK_Relacion_Producto1">
@@ -252,6 +244,12 @@
           <AssociationSet Name="FK_ValorAtributo_Producto" Association="TiendaModel.FK_ValorAtributo_Producto">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="ValorAtributo" EntitySet="ValorAtributo" />
+          </AssociationSet>
+          <EntitySet Name="Cuenta" EntityType="TiendaModel.Cuenta" />
+          <EntitySet Name="Categoria" EntityType="TiendaModel.Categoria" />
+          <AssociationSet Name="ProductoCategoria" Association="TiendaModel.ProductoCategoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="sysdiagrams">
@@ -338,6 +336,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Cuenta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="0" />
+          <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroProductos" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="TiendaModel.ProductoCategoria" FromRole="Categoria" ToRole="Producto" />
+        </EntityType>
+        <Association Name="ProductoCategoria">
+          <End Type="TiendaModel.Categoria" Role="Categoria" Multiplicity="*" />
+          <End Type="TiendaModel.Producto" Role="Producto" Multiplicity="*" />
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -350,15 +370,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-                <ScalarProperty Name="NumeroProductos" ColumnName="NumeroProductos" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Categoria">
-            <EntityTypeMapping TypeName="TiendaModel.Categoria">
-              <MappingFragment StoreEntitySet="Categoria">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="NumeroProductos" ColumnName="NumeroProductos" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -376,14 +387,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="ProductoCategoria" TypeName="TiendaModel.ProductoCategoria" StoreEntitySet="ProductoCategoria">
-            <EndProperty Name="Categoria">
-              <ScalarProperty Name="Id" ColumnName="CategoriaId" />
-            </EndProperty>
-            <EndProperty Name="Producto">
-              <ScalarProperty Name="Id" ColumnName="ProductoId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="TiendaModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -414,6 +417,33 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Cuenta">
+            <EntityTypeMapping TypeName="TiendaModel.Cuenta">
+              <MappingFragment StoreEntitySet="Cuenta">
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="TiendaModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="NumeroProductos" ColumnName="NumeroProductos" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ProductoCategoria" TypeName="TiendaModel.ProductoCategoria" StoreEntitySet="ProductoCategoria">
+            <EndProperty Name="Producto">
+              <ScalarProperty Name="Id" ColumnName="ProductoId" />
+            </EndProperty>
+            <EndProperty Name="Categoria">
+              <ScalarProperty Name="Id" ColumnName="CategoriaId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

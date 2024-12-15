@@ -92,7 +92,7 @@ namespace PIM
                 // Verificar si el nombre no está vacío
                 if (string.IsNullOrEmpty(nuevoNombre))
                 {
-                    MessageBox.Show("Por favor ingrese un nombre para el atributo.");
+                    MessageBox.Show("Please enter a name for the attribute.");
                     return;
                 }
 
@@ -101,7 +101,7 @@ namespace PIM
 
                 bd.SaveChanges();
 
-                MessageBox.Show("Atributo actualizado exitosamente.");
+                MessageBox.Show("Attribute updated successfully.");
 
                 ListarAtributo listarAtributo = new ListarAtributo();
                 listarAtributo.Show();
@@ -109,7 +109,7 @@ namespace PIM
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrió un error al actualizar el atributo: " + ex.Message);
+                MessageBox.Show("An error occurred while updating the attribute: " + ex.Message);
             }
         }
 
@@ -117,6 +117,18 @@ namespace PIM
         {
             ListarRelacion listarRelacion = new ListarRelacion();
             listarRelacion.Show();
+            this.Hide();
+        }
+
+        private void Tipo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bCuenta_Click(object sender, EventArgs e)
+        {
+            MostrarInformacionCuenta m = new MostrarInformacionCuenta();
+            m.Show();
             this.Hide();
         }
     }

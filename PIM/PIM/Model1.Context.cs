@@ -26,10 +26,11 @@ namespace PIM
         }
     
         public virtual DbSet<Atributo> Atributo { get; set; }
-        public virtual DbSet<Categoria> Categoria { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Relacion> Relacion { get; set; }
         public virtual DbSet<ValorAtributo> ValorAtributo { get; set; }
+        public virtual DbSet<Cuenta> Cuenta { get; set; }
+        public virtual DbSet<Categoria> Categoria { get; set; }
     }
 }

@@ -40,7 +40,7 @@
             // 
             // bProductos
             // 
-            this.bProductos.Location = new System.Drawing.Point(209, 118);
+            this.bProductos.Location = new System.Drawing.Point(203, 66);
             this.bProductos.Margin = new System.Windows.Forms.Padding(2);
             this.bProductos.Name = "bProductos";
             this.bProductos.Size = new System.Drawing.Size(112, 47);
@@ -62,7 +62,7 @@
             // 
             // bAtributos
             // 
-            this.bAtributos.Location = new System.Drawing.Point(464, 118);
+            this.bAtributos.Location = new System.Drawing.Point(458, 66);
             this.bAtributos.Margin = new System.Windows.Forms.Padding(2);
             this.bAtributos.Name = "bAtributos";
             this.bAtributos.Size = new System.Drawing.Size(112, 47);
@@ -73,7 +73,7 @@
             // 
             // bCategorias
             // 
-            this.bCategorias.Location = new System.Drawing.Point(338, 118);
+            this.bCategorias.Location = new System.Drawing.Point(332, 66);
             this.bCategorias.Margin = new System.Windows.Forms.Padding(2);
             this.bCategorias.Name = "bCategorias";
             this.bCategorias.Size = new System.Drawing.Size(112, 47);
@@ -84,7 +84,7 @@
             // 
             // bDashboard
             // 
-            this.bDashboard.Location = new System.Drawing.Point(85, 118);
+            this.bDashboard.Location = new System.Drawing.Point(79, 66);
             this.bDashboard.Margin = new System.Windows.Forms.Padding(2);
             this.bDashboard.Name = "bDashboard";
             this.bDashboard.Size = new System.Drawing.Size(112, 47);
@@ -107,7 +107,7 @@
             // 
             // bRelaciones
             // 
-            this.bRelaciones.Location = new System.Drawing.Point(597, 118);
+            this.bRelaciones.Location = new System.Drawing.Point(591, 66);
             this.bRelaciones.Margin = new System.Windows.Forms.Padding(2);
             this.bRelaciones.Name = "bRelaciones";
             this.bRelaciones.Size = new System.Drawing.Size(112, 47);

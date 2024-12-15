@@ -8,7 +8,7 @@ END;
 
 USE [master]
 GO
-/****** Object:  Database [Tienda]    Script Date: 14/12/2024 21:53:27 ******/
+/****** Object:  Database [Tienda]    Script Date: 15/12/2024 1:49:50 ******/
 CREATE DATABASE [Tienda]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -83,7 +83,7 @@ ALTER DATABASE [Tienda] SET DELAYED_DURABILITY = DISABLED
 GO
 USE [Tienda]
 GO
-/****** Object:  Table [dbo].[Atributo]    Script Date: 14/12/2024 21:53:28 ******/
+/****** Object:  Table [dbo].[Atributo]    Script Date: 15/12/2024 1:49:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -92,7 +92,7 @@ CREATE TABLE [dbo].[Atributo](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [nvarchar](100) NOT NULL,
 	[Tipo] [nvarchar](10) NOT NULL,
-	[NumeroProductos] [int] NOT NULL,
+	[NumeroProductos] [int] NOT NULL DEFAULT ((0)),
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -100,7 +100,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Categoria]    Script Date: 14/12/2024 21:53:28 ******/
+/****** Object:  Table [dbo].[Categoria]    Script Date: 15/12/2024 1:49:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -108,7 +108,7 @@ GO
 CREATE TABLE [dbo].[Categoria](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [nvarchar](100) NOT NULL,
-	[NumeroProductos] [int] NOT NULL,
+	[NumeroProductos] [int] NOT NULL DEFAULT ((0)),
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -116,7 +116,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Producto]    Script Date: 14/12/2024 21:53:28 ******/
+/****** Object:  Table [dbo].[Producto]    Script Date: 15/12/2024 1:49:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -144,7 +144,7 @@ PRIMARY KEY CLUSTERED
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[ProductoCategoria]    Script Date: 14/12/2024 21:53:28 ******/
+/****** Object:  Table [dbo].[ProductoCategoria]    Script Date: 15/12/2024 1:49:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -160,7 +160,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Relacion]    Script Date: 14/12/2024 21:53:28 ******/
+/****** Object:  Table [dbo].[Relacion]    Script Date: 15/12/2024 1:49:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -177,7 +177,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[ValorAtributo]    Script Date: 14/12/2024 21:53:28 ******/
+/****** Object:  Table [dbo].[ValorAtributo]    Script Date: 15/12/2024 1:49:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -193,10 +193,6 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
-GO
-ALTER TABLE [dbo].[Atributo] ADD  DEFAULT ((0)) FOR [NumeroProductos]
-GO
-ALTER TABLE [dbo].[Categoria] ADD  DEFAULT ((0)) FOR [NumeroProductos]
 GO
 ALTER TABLE [dbo].[ProductoCategoria]  WITH CHECK ADD  CONSTRAINT [FK_ProductoCategoria_Categoria] FOREIGN KEY([CategoriaId])
 REFERENCES [dbo].[Categoria] ([Id])

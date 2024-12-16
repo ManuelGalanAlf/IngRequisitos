@@ -266,5 +266,12 @@ namespace PIM
             m.Show();
             this.Hide();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ExportarCV n = new ExportarCV();
+            n.Show();
+        }
     }
 }

@@ -70,7 +70,7 @@ namespace PIM
                 tbNombre.ReadOnly = true;
 
                 // Mostrar mensaje de éxito
-                MessageBox.Show("Relationship added successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Relationship added successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void bConfirmar_Click(object sender, EventArgs e)

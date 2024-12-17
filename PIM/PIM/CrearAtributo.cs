@@ -130,14 +130,5 @@ namespace PIM
             this.Hide();
         }
 
-
-
-
-
-
-
-
-
-
     }
 }

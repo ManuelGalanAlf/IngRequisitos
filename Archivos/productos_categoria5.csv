@@ -1,0 +1,5 @@
+SKU, Title, FulfilledBy, AmazonSKU, Price, OfferPrice
+1, producto1, Cuenta1, 9876543210987, "64,56", False
+2, producto2, Cuenta1, 4567890123456, "54,65", False
+3, producto3, Cuenta1, 123456789012, "49,99", False
+4, producto4, Cuenta1, 6923450657700, "99,99", False

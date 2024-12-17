@@ -36,15 +36,16 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.bRelaciones = new System.Windows.Forms.Button();
             this.bCuenta = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // bProductos
             // 
-            this.bProductos.Location = new System.Drawing.Point(361, 112);
-            this.bProductos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.bProductos.Location = new System.Drawing.Point(271, 32);
+            this.bProductos.Margin = new System.Windows.Forms.Padding(2);
             this.bProductos.Name = "bProductos";
-            this.bProductos.Size = new System.Drawing.Size(149, 58);
+            this.bProductos.Size = new System.Drawing.Size(112, 47);
             this.bProductos.TabIndex = 30;
             this.bProductos.Text = "Products";
             this.bProductos.UseVisualStyleBackColor = true;
@@ -52,10 +53,10 @@
             // 
             // bCrearProducto
             // 
-            this.bCrearProducto.Location = new System.Drawing.Point(971, 286);
-            this.bCrearProducto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.bCrearProducto.Location = new System.Drawing.Point(785, 232);
+            this.bCrearProducto.Margin = new System.Windows.Forms.Padding(2);
             this.bCrearProducto.Name = "bCrearProducto";
-            this.bCrearProducto.Size = new System.Drawing.Size(255, 58);
+            this.bCrearProducto.Size = new System.Drawing.Size(191, 47);
             this.bCrearProducto.TabIndex = 29;
             this.bCrearProducto.Text = "Create Product";
             this.bCrearProducto.UseVisualStyleBackColor = true;
@@ -63,10 +64,10 @@
             // 
             // bAtributos
             // 
-            this.bAtributos.Location = new System.Drawing.Point(701, 112);
-            this.bAtributos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.bAtributos.Location = new System.Drawing.Point(526, 32);
+            this.bAtributos.Margin = new System.Windows.Forms.Padding(2);
             this.bAtributos.Name = "bAtributos";
-            this.bAtributos.Size = new System.Drawing.Size(149, 58);
+            this.bAtributos.Size = new System.Drawing.Size(112, 47);
             this.bAtributos.TabIndex = 28;
             this.bAtributos.Text = "Attributes";
             this.bAtributos.UseVisualStyleBackColor = true;
@@ -74,10 +75,10 @@
             // 
             // bCategorias
             // 
-            this.bCategorias.Location = new System.Drawing.Point(532, 112);
-            this.bCategorias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.bCategorias.Location = new System.Drawing.Point(399, 32);
+            this.bCategorias.Margin = new System.Windows.Forms.Padding(2);
             this.bCategorias.Name = "bCategorias";
-            this.bCategorias.Size = new System.Drawing.Size(149, 58);
+            this.bCategorias.Size = new System.Drawing.Size(112, 47);
             this.bCategorias.TabIndex = 27;
             this.bCategorias.Text = "Categories";
             this.bCategorias.UseVisualStyleBackColor = true;
@@ -85,10 +86,10 @@
             // 
             // bDashboard
             // 
-            this.bDashboard.Location = new System.Drawing.Point(195, 112);
-            this.bDashboard.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.bDashboard.Location = new System.Drawing.Point(146, 32);
+            this.bDashboard.Margin = new System.Windows.Forms.Padding(2);
             this.bDashboard.Name = "bDashboard";
-            this.bDashboard.Size = new System.Drawing.Size(149, 58);
+            this.bDashboard.Size = new System.Drawing.Size(112, 47);
             this.bDashboard.TabIndex = 26;
             this.bDashboard.Text = "Dashboard";
             this.bDashboard.UseVisualStyleBackColor = true;
@@ -99,20 +100,19 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(183, 220);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Location = new System.Drawing.Point(43, 111);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(668, 228);
+            this.dataGridView1.Size = new System.Drawing.Size(714, 350);
             this.dataGridView1.TabIndex = 25;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
             // 
             // bRelaciones
             // 
-            this.bRelaciones.Location = new System.Drawing.Point(876, 112);
-            this.bRelaciones.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.bRelaciones.Location = new System.Drawing.Point(657, 32);
+            this.bRelaciones.Margin = new System.Windows.Forms.Padding(2);
             this.bRelaciones.Name = "bRelaciones";
-            this.bRelaciones.Size = new System.Drawing.Size(149, 58);
+            this.bRelaciones.Size = new System.Drawing.Size(112, 47);
             this.bRelaciones.TabIndex = 49;
             this.bRelaciones.Text = "Relations";
             this.bRelaciones.UseVisualStyleBackColor = true;
@@ -120,20 +120,31 @@
             // 
             // bCuenta
             // 
-            this.bCuenta.Location = new System.Drawing.Point(1152, 112);
-            this.bCuenta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.bCuenta.Location = new System.Drawing.Point(864, 32);
+            this.bCuenta.Margin = new System.Windows.Forms.Padding(2);
             this.bCuenta.Name = "bCuenta";
-            this.bCuenta.Size = new System.Drawing.Size(149, 58);
+            this.bCuenta.Size = new System.Drawing.Size(112, 47);
             this.bCuenta.TabIndex = 86;
             this.bCuenta.Text = "Account";
             this.bCuenta.UseVisualStyleBackColor = true;
             this.bCuenta.Click += new System.EventHandler(this.bCuenta_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(785, 368);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(191, 44);
+            this.button1.TabIndex = 87;
+            this.button1.Text = "Export Products";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ListarProducto
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1349, 633);
+            this.ClientSize = new System.Drawing.Size(1012, 514);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.bCuenta);
             this.Controls.Add(this.bRelaciones);
             this.Controls.Add(this.bProductos);
@@ -142,7 +153,6 @@
             this.Controls.Add(this.bCategorias);
             this.Controls.Add(this.bDashboard);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ListarProducto";
             this.Text = "ListarProducto";
             this.Load += new System.EventHandler(this.ListarProducto_Load);
@@ -161,6 +171,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button bRelaciones;
         private System.Windows.Forms.Button bCuenta;
+        private System.Windows.Forms.Button button1;
 
     }
 }

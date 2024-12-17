@@ -1,7 +1,13 @@
 ﻿using System;
-using System.Linq;
-using System.Windows.Forms;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO; 
 
 namespace PIM
 {
@@ -21,6 +27,7 @@ namespace PIM
 
             // Vincular el evento para manejar el clic en las celdas
             dataGridView1.CellContentClick += DataGridView1_CellContentClick;
+            dataGridView1.AllowUserToAddRows = false;
         }
 
         private void AgregarBotonesDataGridView()
@@ -65,7 +72,8 @@ namespace PIM
         private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Verificar que el índice de fila y columna sean válidos
-            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count && e.ColumnIndex >= 0)
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count &&
+                e.ColumnIndex >= 0 && e.ColumnIndex < dataGridView1.Columns.Count)
             {
                 string columnName = dataGridView1.Columns[e.ColumnIndex].Name;
 
@@ -106,7 +114,9 @@ namespace PIM
                     var editarForm = new ModificarProducto(producto);
                     editarForm.ShowDialog();
                     this.Close();
+                    dataGridView1.CellContentClick -= DataGridView1_CellContentClick;
                     CargarProductos();
+                    dataGridView1.CellContentClick += DataGridView1_CellContentClick;
                 }
                 else
                 {
@@ -175,15 +185,86 @@ namespace PIM
         {
             using (TiendaEntities1 BD = new TiendaEntities1())
             {
+                // Limpiar columnas anteriores si existen
+                dataGridView1.Columns.Clear();
+
+                // Agregar columna Thumbnail como primera columna
+                if (!dataGridView1.Columns.Contains("Thumbnail"))
+                {
+                    DataGridViewImageColumn thumbnailColumn = new DataGridViewImageColumn
+                    {
+                        Name = "Thumbnail",
+                        HeaderText = "Thumbnail",
+                        ImageLayout = DataGridViewImageCellLayout.Zoom // Ajusta la imagen al tamaño de la celda
+                    };
+                    dataGridView1.Columns.Add(thumbnailColumn);
+                }
+
+                // Configurar el tamaño de la fila para reducir el tamaño de la imagen
+                dataGridView1.RowTemplate.Height = 50; // Puedes ajustar el valor según el tamaño deseado
+
+                // Crear columnas base (SKU, GTIN, Name)
+                dataGridView1.Columns.Add("SKU", "SKU");
+                dataGridView1.Columns.Add("GTIN", "GTIN");
+                dataGridView1.Columns.Add("Name", "Name");
+
+                // Obtener los atributos dinámicos de la tabla Atributo
+                var atributos = BD.Atributo.ToList();
+
+                // Crear una columna por cada atributo
+                foreach (var atributo in atributos)
+                {
+                    if (!dataGridView1.Columns.Contains(atributo.Nombre)) // Evitar duplicados
+                    {
+                        dataGridView1.Columns.Add(atributo.Nombre, atributo.Nombre);
+                    }
+                }
+
+                // Obtener productos de la base de datos con sus valores de atributos
                 var productos = (from p in BD.Producto
                                  select new
                                  {
-                                     SKU = p.Sku,  // Renombrar la columna a "SKU"
-                                     GTIN = p.Gtin,  // Renombrar la columna a "GTIN"
+                                     SKU = p.Sku,
+                                     GTIN = p.Gtin,
                                      Name = p.Nombre,
+                                     Thumbnail = p.Thumbnail, // Asumiendo que el campo es byte[]
+                                     ValoresAtributos = p.ValorAtributo.ToList()
                                  }).ToList();
 
-                dataGridView1.DataSource = productos;
+                // Agregar las filas de productos al DataGridView
+                foreach (var producto in productos)
+                {
+                    var row = new DataGridViewRow();
+
+                    // Convertir Thumbnail a Image si existe
+                    Image thumbnailImage = producto.Thumbnail != null ? ByteArrayToImage(producto.Thumbnail) : null;
+
+                    // Crear la fila con el Thumbnail primero
+                    row.CreateCells(dataGridView1, thumbnailImage, producto.SKU, producto.GTIN, producto.Name);
+
+                    // Llenar las columnas de atributos
+                    foreach (var atributo in atributos)
+                    {
+                        // Buscar el valor del atributo para este producto
+                        var valorAtributo = producto.ValoresAtributos
+                            .FirstOrDefault(va => va.AtributoId == atributo.Id);
+
+                        // Encontrar el índice de la columna actual
+                        int columnIndex = dataGridView1.Columns[atributo.Nombre].Index;
+
+                        // Asignar el valor del atributo o una cadena vacía si no existe
+                        row.Cells[columnIndex].Value = valorAtributo != null ? valorAtributo.Valor : "";
+                    }
+
+                    dataGridView1.Rows.Add(row);
+                }
+            }
+        }
+        private Image ByteArrayToImage(byte[] byteArrayIn)
+        {
+            using (var ms = new MemoryStream(byteArrayIn))
+            {
+                return Image.FromStream(ms);
             }
         }
 
@@ -265,6 +346,13 @@ namespace PIM
             MostrarInformacionCuenta m = new MostrarInformacionCuenta();
             m.Show();
             this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ExportarCV n = new ExportarCV();
+            n.Show();
         }
     }
 }

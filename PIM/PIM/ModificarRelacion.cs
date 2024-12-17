@@ -167,7 +167,7 @@ namespace PIM
                 BD.Relacion.Add(nuevaRelacion);
                 BD.SaveChanges();
 
-                MessageBox.Show("Relation added successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               // MessageBox.Show("Relation added successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarRelaciones(); // Actualizar el DataGridView con la nueva relación
             }
         }

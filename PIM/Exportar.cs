@@ -45,7 +45,7 @@ namespace PIM
             comboBox2.Items.Add("False");
 
             // Seleccionar el primer valor del ComboBox por defecto (opcional)
-            comboBox2.SelectedIndex = 0; // Esto selecciona "True" por defecto
+            comboBox2.SelectedIndex = 1; // Esto selecciona "True" por defecto
 
             // Rellenar ComboBox con valores de la tabla "atributos"
             RellenarComboBoxConValoresDeTabla();
@@ -214,8 +214,8 @@ namespace PIM
         private void button2_Click(object sender, EventArgs e)
         {
             ExportarCV ex = new ExportarCV();
-            this.Show();
-            ex.Close();
+            ex.Show();
+            this.Close();
         }
     }
 }

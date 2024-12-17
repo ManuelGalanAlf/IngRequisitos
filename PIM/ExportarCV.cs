@@ -79,7 +79,7 @@ namespace PIM
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
-            PantallaPrincipal ex = new PantallaPrincipal();
+            ListarProducto ex = new ListarProducto();
             ex.Show();
 
         }

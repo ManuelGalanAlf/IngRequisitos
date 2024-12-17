@@ -220,8 +220,8 @@ namespace PIM
             // Solo cambiar de formulario si se ha seleccionado una categoría
             if (string.IsNullOrEmpty(categoriaSeleccionada))
             {
-                MessageBox.Show("Please, select a category to change the form");
-                return;
+                //MessageBox.Show("Please, select a category to change the form");
+                //return;
             }
 
             // Crear una instancia del formulario Exportar

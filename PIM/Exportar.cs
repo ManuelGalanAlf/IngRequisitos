@@ -117,16 +117,31 @@ namespace PIM
                     // Obtener los productos de la categoría seleccionada
                     using (var context = new TiendaEntities1())
                     {
-                        var productos = context.Producto
-                                               .Where(p => p.Categoria.Any(c => c.Nombre == CategoriaSeleccionada))  // Filtrar productos por categoría
-                                               .Select(p => new
-                                               {
-                                                   SKU = p.Sku,  // Asumo que "SKU" es un campo de la tabla Producto
-                                                   Title = p.Nombre,  // Asumimos que el "Nombre" es el título del producto
-                                                   GTIN = p.Gtin,  // Suponiendo que "GTIN" es un campo de la tabla Producto
-                                                   ProductoId = p.Id  // Suponiendo que "Id" es la clave primaria del producto
-                                               })
-                                               .ToList();
+                        var productos =  context.Producto
+                                .Select(p => new
+                       {
+                           SKU = p.Sku,  // Asumo que "SKU" es un campo de la tabla Producto
+                           Title = p.Nombre,  // Asumimos que el "Nombre" es el título del producto
+                           GTIN = p.Gtin,  // Suponiendo que "GTIN" es un campo de la tabla Producto
+                           ProductoId = p.Id  // Suponiendo que "Id" es la clave primaria del producto
+                       })
+                       .ToList();
+                        if (CategoriaSeleccionada != null)
+                        {
+                            productos = context.Producto
+.Where(p => p.Categoria.Any(c => c.Nombre == CategoriaSeleccionada))  // Filtrar productos por categoría
+.Select(p => new
+{
+    SKU = p.Sku,  // Asumo que "SKU" es un campo de la tabla Producto
+    Title = p.Nombre,  // Asumimos que el "Nombre" es el título del producto
+    GTIN = p.Gtin,  // Suponiendo que "GTIN" es un campo de la tabla Producto
+    ProductoId = p.Id  // Suponiendo que "Id" es la clave primaria del producto
+})
+.ToList();
+                        }
+                      
+
+
 
                         // Obtener el nombre de la cuenta
                         string cuentaNombre = textBox1.Text;

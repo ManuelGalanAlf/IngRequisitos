@@ -105,8 +105,11 @@ namespace PIM
                     dataGridViewProductos.Rows.Add(row);
                 }
             }
+<<<<<<< HEAD
             dataGridViewProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewProductos.AllowUserToAddRows = false;
+=======
+>>>>>>> 79f4302999d8b3728b24755ab356f71c7abaa7f0
 
             // Establecer el ComboBox en blanco al cargar el formulario
             cbCategorias.SelectedItem = null;

@@ -61,6 +61,7 @@
             // 
             // button1
             // 
+<<<<<<< HEAD
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.button1.Location = new System.Drawing.Point(525, 89);
@@ -69,6 +70,14 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Export";
             this.button1.UseVisualStyleBackColor = false;
+=======
+            this.button1.Location = new System.Drawing.Point(525, 97);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(92, 53);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "EXPORTAR";
+            this.button1.UseVisualStyleBackColor = true;
+>>>>>>> 79f4302999d8b3728b24755ab356f71c7abaa7f0
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // label2
@@ -133,6 +142,7 @@
             // 
             // button2
             // 
+<<<<<<< HEAD
             this.button2.BackColor = System.Drawing.Color.Red;
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(525, 234);
@@ -141,6 +151,14 @@
             this.button2.TabIndex = 11;
             this.button2.Text = "Back";
             this.button2.UseVisualStyleBackColor = false;
+=======
+            this.button2.Location = new System.Drawing.Point(525, 257);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(92, 36);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Back";
+            this.button2.UseVisualStyleBackColor = true;
+>>>>>>> 79f4302999d8b3728b24755ab356f71c7abaa7f0
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // comboBox3

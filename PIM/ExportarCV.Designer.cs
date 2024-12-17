@@ -56,16 +56,25 @@
             // 
             // bFiltrar
             // 
+<<<<<<< HEAD
             this.bFiltrar.Location = new System.Drawing.Point(307, 42);
             this.bFiltrar.Name = "bFiltrar";
             this.bFiltrar.Size = new System.Drawing.Size(77, 23);
             this.bFiltrar.TabIndex = 3;
             this.bFiltrar.Text = "Filter";
+=======
+            this.bFiltrar.Location = new System.Drawing.Point(347, 42);
+            this.bFiltrar.Name = "bFiltrar";
+            this.bFiltrar.Size = new System.Drawing.Size(75, 23);
+            this.bFiltrar.TabIndex = 3;
+            this.bFiltrar.Text = "FILTER";
+>>>>>>> 79f4302999d8b3728b24755ab356f71c7abaa7f0
             this.bFiltrar.UseVisualStyleBackColor = true;
             this.bFiltrar.Click += new System.EventHandler(this.bFiltrar_Click);
             // 
             // button1
             // 
+<<<<<<< HEAD
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.button1.Location = new System.Drawing.Point(606, 26);
@@ -74,10 +83,19 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Export";
             this.button1.UseVisualStyleBackColor = false;
+=======
+            this.button1.Location = new System.Drawing.Point(590, 26);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 54);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "EXPORT";
+            this.button1.UseVisualStyleBackColor = true;
+>>>>>>> 79f4302999d8b3728b24755ab356f71c7abaa7f0
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
+<<<<<<< HEAD
             this.button2.BackColor = System.Drawing.Color.Red;
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.button2.Location = new System.Drawing.Point(804, 26);
@@ -86,6 +104,14 @@
             this.button2.TabIndex = 5;
             this.button2.Text = "Return";
             this.button2.UseVisualStyleBackColor = false;
+=======
+            this.button2.Location = new System.Drawing.Point(779, 38);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Back";
+            this.button2.UseVisualStyleBackColor = true;
+>>>>>>> 79f4302999d8b3728b24755ab356f71c7abaa7f0
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // dataGridViewProductos
@@ -93,7 +119,11 @@
             this.dataGridViewProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewProductos.Location = new System.Drawing.Point(12, 98);
             this.dataGridViewProductos.Name = "dataGridViewProductos";
+<<<<<<< HEAD
             this.dataGridViewProductos.Size = new System.Drawing.Size(903, 277);
+=======
+            this.dataGridViewProductos.Size = new System.Drawing.Size(903, 380);
+>>>>>>> 79f4302999d8b3728b24755ab356f71c7abaa7f0
             this.dataGridViewProductos.TabIndex = 6;
             // 
             // ExportarCV

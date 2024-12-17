@@ -30,10 +30,11 @@
         {
             this.cbCategorias = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lCategorias = new System.Windows.Forms.ListBox();
             this.bFiltrar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.dataGridViewProductos = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).BeginInit();
             this.SuspendLayout();
             // 
             // cbCategorias
@@ -53,14 +54,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "CATEGORY";
             // 
-            // lCategorias
-            // 
-            this.lCategorias.FormattingEnabled = true;
-            this.lCategorias.Location = new System.Drawing.Point(55, 117);
-            this.lCategorias.Name = "lCategorias";
-            this.lCategorias.Size = new System.Drawing.Size(219, 95);
-            this.lCategorias.TabIndex = 2;
-            // 
             // bFiltrar
             // 
             this.bFiltrar.Location = new System.Drawing.Point(347, 42);
@@ -73,7 +66,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(455, 198);
+            this.button1.Location = new System.Drawing.Point(590, 26);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(112, 54);
             this.button1.TabIndex = 4;
@@ -83,7 +76,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(630, 229);
+            this.button2.Location = new System.Drawing.Point(779, 38);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
@@ -91,20 +84,29 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // dataGridViewProductos
+            // 
+            this.dataGridViewProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewProductos.Location = new System.Drawing.Point(12, 98);
+            this.dataGridViewProductos.Name = "dataGridViewProductos";
+            this.dataGridViewProductos.Size = new System.Drawing.Size(903, 380);
+            this.dataGridViewProductos.TabIndex = 6;
+            // 
             // ExportarCV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(951, 403);
+            this.ClientSize = new System.Drawing.Size(951, 503);
+            this.Controls.Add(this.dataGridViewProductos);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.bFiltrar);
-            this.Controls.Add(this.lCategorias);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbCategorias);
             this.Name = "ExportarCV";
             this.Text = "ExportarCV";
             this.Load += new System.EventHandler(this.ExportarCV_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,9 +116,9 @@
 
         private System.Windows.Forms.ComboBox cbCategorias;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox lCategorias;
         private System.Windows.Forms.Button bFiltrar;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView dataGridViewProductos;
     }
 }

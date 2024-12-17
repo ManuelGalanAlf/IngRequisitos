@@ -37,7 +37,11 @@ namespace PIM
             }
 
             // Asignar valores a los otros TextBox
-            textBox2.Text = "GTIN";  // Valor para TextBox2
+            comboBox3.Items.Add("SKU");
+            comboBox3.Items.Add("GTIN");
+
+            // Seleccionar el primer valor por defecto (opcional)
+            comboBox3.SelectedIndex = 0;
             textBox3.Text = "SKU";   // Valor para TextBox3
 
             // Rellenar ComboBox con True/False
@@ -60,7 +64,7 @@ namespace PIM
                 {
                     // Filtrar atributos con tipo numérico
                     var valores = context.Atributo
-                        .Where(a => a.Tipo == "Entero" || a.Tipo == "Real" || a.Tipo == "decimal" || a.Tipo == "double")
+                        .Where(a => a.Tipo == "Entero" || a.Tipo == "Real" || a.Tipo == "decimal" || a.Tipo == "double" || a.Tipo == "int" || a.Tipo == "Float" || a.Tipo == "real")
                         .Select(a => a.Nombre)
                         .Distinct()
                         .ToList();
@@ -173,7 +177,13 @@ namespace PIM
                             string skuEscapado = EscaparCsvValue(producto.SKU.ToString());
                             string titleEscapado = EscaparCsvValue(producto.Title);
                             string fulfilledByEscapado = EscaparCsvValue(cuentaNombre);
-                            string amazonSkuEscapado = EscaparCsvValue(producto.GTIN.ToString());
+                            string amazonSkuEscapado;
+                            if(comboBox3.Text == "SKU"){
+                                 amazonSkuEscapado = EscaparCsvValue(producto.SKU.ToString());
+                                 Console.WriteLine("SKU");
+                            } else {
+                                 amazonSkuEscapado = EscaparCsvValue(producto.GTIN.ToString());
+                            }
                             string priceEscapado = EscaparCsvValue(priceValue);  // Rellenar Price con el valor obtenido
                             string offerPriceEscapado = EscaparCsvValue("False");  // Se establece como "False" como se indicó
 
